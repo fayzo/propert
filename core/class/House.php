@@ -5,7 +5,7 @@
 
 class House extends Home {
 
-    // THIS IS ON FOR THE MAIN HOME IT HAVE BANNER AND PRICE DISCOUNT
+    // THIS IS ON FOR THE MAIN HOME IT HAVE NAVBAR AS BLACK 
     public function houseList_homeNavbarblack($categories,$pages,$user_id){ ?>
 
                 
@@ -43,7 +43,7 @@ class House extends Home {
 
     <?php }
 
-    // THIS IS ONE FOR THE ADMIN AND AGENT TO VIEW MESSAGE IT HAVE BANNER AND PRICE DISCOUNT
+    // THIS IS ONE FOR THE ADMIN AND AGENT IT HAS NO BLACK IN IT
 
     public function propertyView_HomeAdmin($categories,$pages,$user_id){ ?>
 
@@ -83,8 +83,191 @@ class House extends Home {
         </div>
 
     <?php }
-    // THIS IS ONE FOR THE ADMIN AND AGENT TO VIEW MESSAGE IT HAVE BANNER AND PRICE DISCOUNT
 
+    // THIS IS ONE FOR THE SEARCHING IN PROVINCE,DISTRICT,SECTOR FOR FUNDING HOW MANY LOCATE HOUSE ARE IN
+
+    public function propertyView_SeachSectorNavbar($categories,$province,$district,$sector,$pages,$user_id){ ?>
+            
+        <div class="property-navs border rounded" style="text-align: center;background:#f7f7f7;padding:10px 0 0;margin-bottom: 5px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="main-menus">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#House_For_sale" onclick='houseCategories_SeachSector("House_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>House For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#House_For_rent" onclick='houseCategories_SeachSector("House_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>House For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Land_For_sale" onclick='houseCategories_SeachSector("Land_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Land & Plots<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Land_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_sale" onclick='houseCategories_SeachSector("Apartment_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Apartment For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_rent" onclick='houseCategories_SeachSector("Apartment_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Apartment For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#room_For_rent" onclick='houseCategories_SeachSector("room_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Room<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('room_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Commerce_For_rent" onclick='houseCategories_SeachSector("commerce_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Commerce<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Commerce_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Offices_For_rent" onclick='houseCategories_SeachSector("Offices_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Offices<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Offices_For_rent',$province,$district,$sector);?></span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    <?php }
+
+    public function propertyView_SeachSectorList($categories,$province,$district,$sector,$pages,$user_id){
+        
+        if($pages === 0 || $pages < 1){
+            $showpages = 0 ;
+        }else{
+            $showpages = ($pages*10)-10;
+        }
+        
+    $mysqli= $this->database;
+	$query= $mysqli->query("SELECT * FROM house H
+		Left JOIN provinces P ON H. province = P. provincecode
+		Left JOIN districts M ON H. districts = M. districtcode
+		Left JOIN sectors T ON H. sector = T. sectorcode
+        WHERE H. categories_house ='$categories'
+        and H. province= '{$province}' and H. districts= '{$district}'
+        and H. sector= '{$sector}' ORDER BY H. buy='sold' ,rand() Desc Limit $showpages,10");  ?>
+    
+ 
+        <div id="house-hide" class="property-list"> 
+            <div class="tab-content">
+                <div class="active tab-pane" id="<?php echo $categories; ?>">
+
+                <div class="row">
+
+                <?php 
+                if ($query->num_rows > 0) {
+
+                    while ($houses = $query->fetch_array()) { ?>
+
+                <div class="col-md-4 col-lg-4">
+                <div class="single_property bg-light">
+                <div class="property_thumb">
+                    <?php if ($houses['buy'] == "sale") { ?>
+                        <div class="property_tag">
+                                For Sale
+                        </div>
+                        <?php }else if ($houses['buy'] == "rent") { ?>
+                            <div class="property_tag bg-success">
+                                    For Rent
+                            </div>
+                        <?php }else {  ?>
+                            <div class="property_tag red">
+                                    Sold
+                            </div>
+                    <?php } ?>
+                    <?php 
+                    // echo $this->banner($houses['banner']) ;
+                            $file = $houses['photo']."=".$houses['other_photo'];
+                                            $expode = explode("=",$file);  ?>
+                    <img src="<?php echo BASE_URL.'uploads/house/'.$expode[0]; ?>" alt="">
+                </div>
+                <div class="property_content">
+                    <div class="main_pro">
+                            <?php echo $this->edit_delete_house($user_id,$houses['user_id3'],$houses['house_id']); ?>
+                            <h3><a href="javascript:void(0)" id="house-readmore" data-house="<?php echo $houses['house_id']; ?>">
+                                    <?php 
+                                        $subect = $houses['categories_house'];
+                                        $replace = " ";
+                                        $searching = "_";
+                                        echo str_replace($searching,$replace, $subect);
+                                        ?>
+                            </a>
+                            <span class="h6 text-success text-uppercase ml-2"><?php echo $houses['equipment']; ?></span>
+                            </h3>
+                            <div class="mark_pro">
+                                <!-- <img src="<?php echo BASE_URL; ?>assets/icon/svg_icon/location.svg" alt=""> -->
+                                <span>
+                                <a class="properties-location" href="javascript:void(0)" id="house-readmore" data-house="<?php echo $houses['house_id']; ?>" ><i class="icon_pin"></i>
+                                <?php echo $houses['namedistrict']; ?> / 
+                                <?php echo $houses['namesector']; ?>
+                                </a></span>
+                            </div>
+                            <span class="amount">
+                                From:<span class="room-price price-change"> <?php echo $this->nice_number(number_format($houses['price'])); ?> Frw
+                                <?php  echo (substr($houses['categories_house'],-4) == 'sale')? '':'/month';?>
+                                </span>
+                                <?php if($houses['price_discount'] != 0){ ?>
+                                    
+                                <div class="text-danger price-change" style="text-decoration: line-through;">
+                                <?php echo number_format($houses['price_discount']); ?> Frw </div><?php } ?>
+                            </span>
+                    </div>
+                    Publish <?php echo $this->timeAgo($houses['created_on3']); ?>
+                </div>
+                <div class="footer_pro">
+                    <ul>
+                        <li>
+                            <div class="single_info_doc">
+                                <img src="<?php echo BASE_URL; ?>assets/icon/svg_icon/bed.svg" alt="">
+                                <span><?php echo $houses['bedroom']; ?> Bed</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="single_info_doc">
+                                <img src="<?php echo BASE_URL; ?>assets/icon/svg_icon/bath.svg" alt="">
+                                <span><?php echo $houses['bathroom']; ?>  Bath</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="single_info_doc">
+                            <i class="fa fa-car"></i>
+                                <!-- <img src="< ?php echo BASE_URL; ?>assets/icon/svg_icon/car.png" alt=""> -->
+                                <span><?php echo $houses['car_in_garage']; ?>  car</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+                <!-- single_property -->
+                </div>
+                <!-- col -->
+
+                <?php } }else{
+                        echo ' <div class="col-md-12 col-lg-12"><div class="alert alert-danger alert-dismissible fade show text-center">
+                                    <button class="close" data-dismiss="alert" type="button">
+                                        <span>&times;</span>
+                                    </button>
+                                    <strong>No Record</strong>
+                                </div></div>'; 
+                    }
+                        $query1= $mysqli->query("SELECT COUNT(*) FROM house WHERE categories_house ='$categories'
+                            and province= '{$province}' and districts= '{$district}'
+                            and sector= '{$sector}' ORDER BY buy='sold',rand() Desc ");
+
+                        $row_Paginaion = $query1->fetch_array();
+                        $total_Paginaion = array_shift($row_Paginaion);
+                        $post_Perpages = $total_Paginaion/10;
+                        $post_Perpage = ceil($post_Perpages); ?> 
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <?php if($post_Perpage > 1){ ?>
+                <nav>
+                    <ul class="pagination justify-content-center mt-3">
+                        <?php if ($pages > 1) { ?>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,".$pages-1; ?>)'>Previous</a></li>
+                        <?php } ?>
+                        <?php for ($i=1; $i <= $post_Perpage; $i++) { 
+                                if ($i == $pages) { ?>
+                            <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
+                            <?php }else{ ?>
+                            <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
+                        <?php } } ?>
+                        <?php if ($pages+1 <= $post_Perpage) { ?>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,".$pages+1; ?>)'>Next</a></li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+
+                <?php }
+    
+    }
+
+    // THIS IS ONE FOR THE ADMIN AND AGENT TO VIEW MESSAGE IT HAVE BANNER AND PRICE DISCOUNT
 
     public function houseListAdmin($categories,$pages,$user_id)
     {
@@ -439,8 +622,18 @@ class House extends Home {
                             <div class="text-danger price-change" style="text-decoration: line-through;">
                             <?php echo number_format($house['price_discount']); ?> Frw </div><?php } ?>
                         </span>
+                        <div class="text-muted clear-right" style="padding-bottom: 10px;">
+                            <form method="post" id="form-housecartitem<?php echo $house['code']; ?>add" class="float-right">
+                                <div style="display:inline-flex;" >
+                                    <input type="hidden" style="width:30px;" name="actions" value="add" />
+                                    <input type="hidden" style="width:30px;" name="code" value="<?php echo $house['code']; ?>" />
+                                    <input type="hidden" class="form-control form-control-sm text-center mr-2" style="width:30px;" name="quantitys" value="1" size="2" readonly/>
+                                    <input type="button" onclick="xxda('add','<?php echo 'form-housecartitem'.$house['code'].'add'; ?>','<?php echo $house['code']; ?>');" value="Add to WatchList" class="btn btn-outline-success btn-sm " />
+                                </div>
+                            </form>
+                        </div>
                 </div>
-                Publish <?php echo $this->timeAgo($house['created_on3']); ?>
+               <div> Publish <?php echo $this->timeAgo($house['created_on3']); ?></div>
             </div>
             <div class="footer_pro">
                 <ul>
@@ -502,6 +695,114 @@ class House extends Home {
          </nav>
         <?php } 
     }
+
+    public function housecart_item(){
+
+        $mysqli= $this->database;
+        $db_handle = $mysqli;
+        if(!empty($_POST["actions"])) {
+        switch($_POST["actions"]) {
+        	case "add":
+        		if(!empty($_POST["quantitys"])) {
+        			$productByCode = $this->runQuery("SELECT * FROM house WHERE code='" . $_POST["code"] . "'");
+        			$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name_of_house"], 'code'=>$productByCode[0]["code"], 'quantitys'=>$_POST["quantitys"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["photo"]));
+        			
+        			if(!empty($_SESSION["housecart_item"])) {    
+        				if(in_array($productByCode[0]["code"],array_keys($_SESSION["housecart_item"]))) {
+        					foreach($_SESSION["housecart_item"] as $k => $v) {
+        							if($productByCode[0]["code"] == $k) {
+        								if(empty($_SESSION["housecart_item"][$k]["quantitys"])) {
+        									$_SESSION["housecart_item"][$k]["quantitys"] = 0;
+        								}
+        								$_SESSION["housecart_item"][$k]["quantitys"] += $_POST["quantitys"];
+        							}
+        					}
+        				} else {
+        					$_SESSION["housecart_item"] = array_merge($_SESSION["housecart_item"],$itemArray);
+        				}
+        			} else {
+        				$_SESSION["housecart_item"] = $itemArray;
+        			}
+                }
+             exit($this->houseshowCart_itemSale());
+                
+        	break;
+        	case "remove":
+        		if(!empty($_SESSION["housecart_item"])) {
+        			foreach($_SESSION["housecart_item"] as $k => $v) {
+        					if($_POST["code"] == $k)
+        						unset($_SESSION["housecart_item"][$k]);				
+        					if(empty($_SESSION["housecart_item"]))
+        						unset($_SESSION["housecart_item"]);
+        			}
+                }
+             exit($this->houseshowCart_itemSale());
+        	break;
+        	case "empty":
+        		unset($_SESSION["housecart_item"]);
+        	break;	
+        }
+        }
+    }
+	
+    public function houseshowCart_itemSale(){
+
+        if(isset($_SESSION["housecart_item"])){
+                $total_quantitys = 0;
+                $total_price = 0;
+            ?>	
+            <table class="table table-responsive-sm table-hover table-bordered" id="houseshowcart">
+             <thead class="main-active" style="background: #f7f7f7;">
+               <tr>
+               <th style="text-align:center;">Products</th>
+               <th style="text-align:center;">Price</th>
+               <th style="text-align:center;">Remove</th>
+			   </tr>	
+			 </thead>
+             <tbody class="bg-light">
+            <?php		
+                foreach ($_SESSION["housecart_item"] as $item){
+                    $item_price = $item["quantitys"]*$item["price"];
+            		?>
+            		<tr>
+                    <td style="background: url('<?php echo BASE_URL;?>uploads/house/<?php echo $item["image"]; ?>')no-repeat center center;background-size:contain;height:80px;width:80px;position:relative">
+                    <div style="position:absolute;bottom:0px;left:0px;background-color:#0000006e;color:white;width: 100%;"><?php
+                    if (strlen($item["name"]) > 12) {
+                      echo $item["name"] = substr($item["name"],0,12).'..';
+                    }else{
+                      echo $item["name"];
+                    } ?></div>
+                    </td>
+            				<td align="right"><?php echo "Frw ". number_format($item_price); ?></td>
+            				<td align="center">
+                                <form method="post" id="form-housecartitem<?php echo $item['code']; ?>remove" >
+                                        <input type="hidden" style="width:30px;" name="actions" value="remove" />
+                                        <input type="hidden" style="width:30px;" name="code" value="<?php echo $item['code']; ?>" />
+                                        <a href="javascript:void(0);" onclick="xxda('remove','<?php echo 'form-housecartitem'.$item['code'].'remove'; ?>','<?php echo $item['code']; ?>');"><img src="<?php echo BASE_URL_LINK ;?>image/img/icon-delete.png" alt="Remove Item" /></a> 
+                                </form>
+                            </td>
+            				</tr>
+            				<?php
+            				$total_quantitys += $item["quantitys"];
+            				$total_price += ($item["price"]*$item["quantitys"]);
+            		}
+            		?>
+            
+            <tr>
+            <td>Total:</td>
+            <td align="left" colspan="2"><strong><?php echo "Frw ".number_format($total_price); ?></strong></td>
+            </tr>
+            </tbody>
+            </table>		
+              <?php
+            } else {
+            ?>
+            <div class="no-records"></div>
+            <!-- <div class="no-records">Your Cart is Empty</div> -->
+            <?php 
+            } 
+    }
+
 
     public function commentsToAgent($house_id)
     {
@@ -582,13 +883,13 @@ class House extends Home {
                             </div>
                         </td>
                         <td><?php echo $row['name_client'] ; ?></td>
-                        <td><?php echo $row['email_client'] ; ?><i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                        <td><?php echo $row['email_client'] ; ?>
                             <div><?php echo $row['phone_client'] ; ?>
                             </div>
                         </td>
                         <td>
                             <div><?php echo $this->timeAgo($row['datetime']); ?></div>
-                            <input type="button" onclick="business_msg(<?php echo $row['message_id'];?>, 'agent_message_view')" value="View" class="btn">
+                            <button type="button" onclick="business_msg(<?php echo $row['message_id'];?>, 'agent_message_view')" class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i> View<?php if($row['status'] != true){echo '<span id="messageRead'.$row['message_id'].'" class="badge badge-danger navbar-badge">1</span>'; } ?></button>
                             <input type="button" onclick="deleteRowHouse(<?php echo $row['message_id'];?>, 'agent_message_delete')" value="Delete" class="btn btn-danger">
                         </td>
                     </tr>
@@ -617,6 +918,24 @@ class House extends Home {
     {
         $db =$this->database;
         $sql= $db->query("SELECT COUNT(*) FROM house WHERE categories_house ='$categories' ");
+        $row_post = $sql->fetch_array();
+        $total_post= array_shift($row_post);
+        $array= array(0,$total_post);
+        $total_posts= array_sum($array);
+        echo $total_posts;
+    }
+
+      public function housecountPOSTS_SeachSector($categories,$province,$district,$sector)
+    {
+        $db =$this->database;
+        $sql= $db->query("SELECT COUNT(*) FROM house H
+		Left JOIN provinces P ON H. province = P. provincecode
+		Left JOIN districts M ON H. districts = M. districtcode
+		Left JOIN sectors T ON H. sector = T. sectorcode
+
+        WHERE H.categories_house ='$categories' AND 
+        H. province = '$province' AND H. districts = '$district' AND H. sector= '$sector' ");
+        // var_dump($sql);
         $row_post = $sql->fetch_array();
         $total_post= array_shift($row_post);
         $array= array(0,$total_post);
@@ -1604,10 +1923,73 @@ class House extends Home {
 
     <?php  }
 
+        public function agent_profile_viewProfile(){ ?>
+
+        <div class="row">
+            <?php 
+                $mysqli= $this->database;
+                $result =$mysqli->query("SELECT * FROM users");
+                
+                while ($user= $result->fetch_array()) { ?>
+
+                    <div class="col-md-12 mb-2">
+
+                    <!-- Profile Image -->
+                    <div class="card bg-light">
+                        <div class="card-header text-muted border-bottom-0">
+                        Real Estate Agent
+                        </div>
+                        <div class="card-body">
+                        <div class="row">
+                            <div class="col-7">
+                            <h2 class="lead"><b><?php echo $user['firstname']." ".$user['lastname']; ?></b></h2>
+                            <!-- <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p> -->
+                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                <li class="small"><span class="fa-li"><i class="fa fa-lg fa-building"></i></span> Address: <?php echo $user['location']; ?></li>
+                                <li class="small"><span class="fa-li"><i class="fa fa-lg fa-phone"></i></span> Phone : <?php echo $user['telephone']; ?></li>
+                            </ul>
+                            </div>
+                            <div class="col-5 text-center single-agent-profile">
+                                <div class="sa-pic">
+                                    <?php if (!empty($user['profile_img'])) { ?>
+                                        <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$user['profile_img'] ;?>" alt="" class="img-circle img-fluid" alt="User Image" >
+                                    <?php  }else{ ?>
+                                        <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User Image">
+                                    <?php } ?>
+                                    <!-- <img src="< ?php echo BASE_URL;?>assets/image/img/agent/agent-1.jpg" alt="" class="img-circle img-fluid"> -->
+                                    <div class="hover-social">
+                                        <a href="https://twitter.com/<?php echo $user['twitter']; ?>" class="twitter"><i class="fa fa-twitter"></i></a>
+                                        <a href="https://www.facebook.com/<?php echo $user['facebook']; ?>" class="instagram"><i class="fa fa-instagram"></i></a>
+                                        <a href="https://www.instagram.com/<?php echo $user['instagram']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card-footer">
+                        <div class="text-right">
+                            <a href="#" class="btn btn-sm bg-teal">
+                            <i class="fas fa-comments"></i> Message
+                            </a>
+                            <a href="#" class="btn btn-sm btn-primary">
+                            <i class="fas fa-user"></i> View Profile
+                            </a>
+                        </div>
+                        </div>
+                    </div>
+                <!-- card -->
+                </div>
+                <!-- col -->
+
+        <?php  } ?>
+
+         </div>
+
+    <?php  }
+
 
         public function request_property(){ ?>
 
-        <div class="col-md-3 mb-3">
             <div class="card card-primary mb-3 ">
                         <div class="card-header">
                         PROPERTY REQUEST
@@ -1645,12 +2027,10 @@ class House extends Home {
                     </div><!-- /.row -->
                 </div> <!-- /.card-body -->
                 <div class="card-footer text-center">
-                    <a href="http://localhost:80/Blog_nyarwanda_CMS/jobs0.php">View all Jobs</a>
+                    <a href="<?php echo PROPERTY_REQUEST; ?>">View all Request</a>
                 </div> <!-- /.card-footer -->
             </div>
 
-        </div>
-        <!-- /.col -->
 
     <?php  }
 

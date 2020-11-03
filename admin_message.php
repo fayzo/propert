@@ -7,6 +7,8 @@
                         <h2 class="modal-title">Request a Property</h2>
                     </div>
                     <div class="modal-body">
+                    <input type="hidden" id="message-read-id" value="">
+                  
                         <div id="business_message">
                             <p><span style="font-weight:bold;font-size:17px;">Name : </span>
                             <span id="name_messageView"></span> </p>

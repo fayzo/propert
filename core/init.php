@@ -5,6 +5,7 @@ include('database/db.php');
 include('class/Users.php');
 include('class/Home.php');
 include('class/House.php');
+include('class/Notification.php');
 
 
 define('BASE_URL','http://localhost/twitter_ex/');
@@ -17,6 +18,8 @@ define('SETTING', BASE_URL.'settings.php');
 define('PROFILE', BASE_URL.'profile.php');
 define('PROFILE_EDIT', BASE_URL.'profile_edit.php');
 define('VIEW_MESSAGE', BASE_URL.'message.php');
+define('WATCH_LIST', BASE_URL.'watchlist.php');
+define('PROPERTY_REQUEST', BASE_URL.'property_request.php');
 
 
 // DEFAULT IMAGE USERS 

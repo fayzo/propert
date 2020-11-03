@@ -1842,7 +1842,8 @@ ul, ol {
  .single_property .property_content {
 	/* padding: 25px; */
 	padding: 25px 25px 0px;
-    border-bottom: 1px solid #E8E8E8;
+	border-bottom: 1px solid #E8E8E8;
+	min-height: 148px;
 }
 .single_property .property_content .main_pro h3 {
     font-size: 13px;
@@ -2271,9 +2272,9 @@ ul, ol {
 	-o-transition: all 0.4s;
 	transition: all 0.4s;
 }
-.owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
+/* .owl-carousel .owl-dots.disabled, .owl-carousel .owl-nav.disabled {
     display: block;
-}
+} */
 
 .agent-carousel.owl-carousel .owl-nav button[type=button].owl-next {
 	left: auto;
@@ -2588,4 +2589,12 @@ ul, ol {
     -moz-user-select: none;
     user-select: none;
     cursor: pointer;
+}
+.navbar-badge {
+    position: absolute;
+    top: 3.5px;
+    /* right: 12px; */
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 2px 4px;
 }

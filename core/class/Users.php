@@ -363,8 +363,23 @@ class Users extends Db{
         }
     }
 
-
     
+    public function runQuery($query) {
+        $mysqli= $this->database;
+		$result = $mysqli->query($query);
+		while($row=$result->fetch_assoc()) {
+			$resultset[] = $row;
+		}		
+		if(!empty($resultset))
+			return $resultset;
+	}
+	
+	public function numRows($query) {
+		$mysqli= $this->database;
+		$result = $mysqli->query($query);
+		$rowcount = $result->num_rows;
+		return $rowcount;	
+	}
 
     public function timeAgo($datetime)
     {

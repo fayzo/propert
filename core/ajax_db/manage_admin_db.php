@@ -122,15 +122,16 @@ include('../init.php');
 		if ($_POST['key'] == 'business_message_view') {
 			$conn =$db;
 			$rowID = $conn->real_escape_string($_POST['rowID']);
-			$sql = $conn->query("SELECT name_client,email_client, phone_client, message_client FROM business_message WHERE message_id='$rowID'");
+			$sql = $conn->query("SELECT message_id,name_client,email_client, phone_client, message_client FROM business_message WHERE message_id='$rowID'");
 			$data = $sql->fetch_array();
 			$jsonArrays = array(
+				'message_id'=> $data['message_id'],
 				'name_client'=> $data['name_client'],
 				'email_client'=> $data['email_client'], 
 				'phone_client'=> $data['phone_client'], 
 				'message_client'=> $data['message_client'],
 			);
-			
+			$notification->business_messageView($data['message_id']);
 			exit(json_encode($jsonArrays));
 		 }
 			 
@@ -139,15 +140,16 @@ include('../init.php');
 		if ($_POST['key'] == 'agent_message_view') {
 			$conn =$db;
 			$rowID = $conn->real_escape_string($_POST['rowID']);
-			$sql = $conn->query("SELECT name_client,email_client, phone_client, message_client FROM agent_message WHERE message_id='$rowID'");
+			$sql = $conn->query("SELECT message_id,name_client,email_client, phone_client, message_client,user_id3 FROM agent_message WHERE message_id='$rowID'");
 			$data = $sql->fetch_array();
 			$jsonArrays = array(
+				'message_id'=> $data['message_id'],
 				'name_client'=> $data['name_client'],
 				'email_client'=> $data['email_client'], 
 				'phone_client'=> $data['phone_client'], 
 				'message_client'=> $data['message_client'],
 			);
-			
+			$notification->agent_messagesView($data['user_id3'],$data['message_id']);
 			exit(json_encode($jsonArrays));
 		 }
 		 
@@ -210,4 +212,24 @@ include('../init.php');
 
 		$db->close();
 	}
+// return true or false
+// 	Expression      | empty($x)
+// ----------------+--------
+// $x = "";        | true    
+// $x = null       | true    
+// var $x;         | true    
+// $x is undefined | true    
+// $x = array();   | true    
+// $x = false;     | true    
+// $x = true;      | false   
+// $x = 1;         | false   
+// $x = 42;        | false   
+// $x = 0;         | true    
+// $x = -1;        | false   
+// $x = "1";       | false   
+// $x = "0";       | true    
+// $x = "-1";      | false   
+// $x = "php";     | false   
+// $x = "true";    | false   
+// $x = "false";   | false   
 ?>

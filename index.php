@@ -93,14 +93,30 @@
         <div class="container">
             <div class="row">
                 <!-- col -->
-                <div class="col-lg-9">
+                <div class="col-lg-9" id="house_hidden">
                     <?php echo $house->property_navListHome('House_For_sale',1,$user_id); ?>
                     <?php echo $house->houseListHome('House_For_sale',1,$user_id); ?>
                 </div>
-                <!-- col -->
-                <?php echo $house->request_property();?>
+                <div class="col-md-3">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <span id="responseSubmitfooditerm"> </span>
+                            <div id="responseSubmitfooditermview">
+                                <?php echo $house->houseshowCart_itemSale(); ?>
+                            </div>
+                        </div> 
+                        <!-- col -->
+                        <div class="col-md-12 mb-3">
+                            <?php echo $house->request_property();?>
+                        </div> 
+                        <!-- col -->
+                    </div> 
+                    <!-- row -->
+                </div> 
                 <!-- col -->
             </div>
+             <!-- row -->
 
         </div>
     </section>
@@ -120,7 +136,7 @@
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="<?php echo BASE_URL; ?>assets/image/img/howit-works/howit-works-1.png" alt="">
-                        <h4>Search & Find Apertment</h4>
+                        <h4>Search & Find Apartment</h4>
                     </div>
                 </div>
                 <div class="col-lg-4">

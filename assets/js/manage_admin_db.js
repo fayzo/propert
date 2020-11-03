@@ -230,6 +230,8 @@
                     $("#Email_messageView").html(response.email_client);
                     $("#Phone_messageView").html(response.phone_client);
                     $("#Message_messageView").html(response.message_client);
+                    $("#message-read-id").val(response.message_id);
+                    $("#messageRead"+response.message_id).hide();
                     $("#closeBtn1").fadeIn();
                 } else {
                     $("#business_request_home").fadeIn();

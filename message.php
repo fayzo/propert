@@ -58,9 +58,10 @@
                     </div>
         </div>
         <!-- /.col -->
-
         <!-- col -->
-        <?php echo $house->request_property();?>
+        <div class="col-md-3 mb-3">
+            <?php echo $house->request_property();?>
+        </div> 
         <!-- col -->
 
         </div>

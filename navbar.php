@@ -1,5 +1,9 @@
    <!-- <p>hello<br>< ?php echo $users->insert();?></p> <br> -->
-
+   <div class="progress progress-navbar m-0 fixed-top" style="height: 6px;">
+        <span class="progress-bar bg-info" role="progressbar"
+            style="width:0%;" id="progress_width" aria-valuenow="" aria-valuemin="0"
+            aria-valuemax="100"></span>
+    </div>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -111,9 +115,12 @@
                                 <img src="<?php echo BASE_URL;?>assets/image/img/rw-flag.jpg" alt="">
                                 <span style="color: #f9f7f5;">Rwanda</span>
                         </span>
-                        <a href="javascript:void(0)" class="ml-2 ml-2 text-white" id="contacts_business" data-contacts="contacts_business" >Contact Us</a>
-                        <a href="<?php echo VIEW_MESSAGE; ?>" class="btn btn-sm btn-outline-success ml-2 mr-2"  style="color:white;border: none;padding-top: 0px;">
-                            <i class="fa fa-envelope-o" style="font-size:20px"></i> Message
+                        <a href="javascript:void(0)" class="btn btn-sm btn-outline-success text-white border-0" id="contacts_business" data-contacts="contacts_business" >Contact Us</a>
+                        <a href="<?php echo VIEW_MESSAGE; ?>" class="btn btn-sm btn-outline-success"  style="color:white;border: none;padding-top: 0px;position:relative;">
+                            <i class="fa fa-envelope-o" style="font-size:16px"></i> Message<span id="messages"><?php if( $notific['total_agentmessage'] > 0){echo '<span  class="badge badge-danger navbar-badge">'.$notific['total_agentmessage'].'</span>'; } ?></span>
+                        </a>
+                        <a href="<?php echo WATCH_LIST; ?>" class="btn btn-sm btn-outline-success"  style="color:white;border: none;padding-top: 0px;position:relative;">
+                            <i class="fa fa-list" style="font-size:16px;"></i> Watch-List<span id="notification"><?php if( $notific['total_watchlist_house'] > 0){echo '<span  class="badge badge-danger navbar-badge">'.$notific['total_watchlist_house'].'</span>'; } ?></span>
                         </a>
 
                             <div class="nav-float-right">
@@ -129,7 +136,7 @@
                                             <?php  }else{ ?>
                                                 <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User Image">
                                             <?php } ?>
-                                            <span class="hidden-xs"><span id="welcome-json">welcome</span> fayzo</span>
+                                            <span class="hidden-xs"><span id="welcome-json">welcome </span><?php echo $user['username']; ?></span>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- User image -->

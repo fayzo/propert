@@ -79,7 +79,7 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
                             </ul>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="background: #e0dedc;">
 
     <!-- Property Details Section Begin -->
             <div class="row">

@@ -329,6 +329,10 @@ if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
     $cell=  $users->test_input($_POST['codecell']);
     $sector =  $users->test_input($_POST['sectorcode']);
     $village =  $users->test_input($_POST['CodeVillage']);
+    $code =  $_POST['name_of_house'];
+    $codes = (strlen($code) > 10)? 
+    strtolower(date('Y').'_'.rand(10,100).substr($code,0,4)):
+    strtolower(date('Y').'_'.rand(10,100).$code);
 
     if (!empty($title) || !empty(array_filter($photo['name'])) || !empty(array_filter($other_photo['name'])) ) {
 		if (!empty($photo['name'][0])) {
@@ -368,6 +372,7 @@ if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
     'categories_house'=> $categories_house,
     'buy'=> $_rent_sale,
     'user_id3'=> $user_id,
+    'code'=> $codes,
     'created_on3'=> $datetime 
         ));
     }

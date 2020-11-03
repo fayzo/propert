@@ -93,7 +93,15 @@
     <script src="<?php echo BASE_URL;?>assets/js/owl.carousel.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/main.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/house_delete.js"></script>
-    
+    <script src="<?php echo BASE_URL;?>assets/js/home_scroll.js"></script>
+    <script src="<?php echo BASE_URL;?>assets/js/jquery.ui.totop.js"></script>
+    <!-- Starting the plugin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
 </div>
 </body>
 </html>
