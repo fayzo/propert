@@ -134,7 +134,7 @@
 	
     // THIS IS FOR CATEGORIES PROPERTY SEARCH SECTOR
 	
-    function houseCategories_SeachSector(categories,province,district,sector,pages,user_id) {
+    function houseCategories_SeachSector(categories,province,district,sector,user_id,pages) {
         var params = '&pages=' + pages +'&categories='+categories+'&province='+province+'&district='+district+'&sector_list='+sector+'&user_id='+user_id;
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/getcell.php',true);
@@ -303,7 +303,7 @@
 
                 switch (range) {
                     case range:
-                         var pagination = document.getElementById('#property-list');
+                         var pagination = document.getElementById('property-list');
                          pagination.innerHTML = xhr.responseText;
                         break;
                 }
@@ -313,17 +313,15 @@
 	
     function houseRangeLayout(range,id,user_id) {
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'core/ajax_db/propertyView_range.php?pages=' + id + '&price_range=' + range + '&user_id=' + user_id, true);
-        xhr.send();
+        var params ='&pages=' + id + '&price_range=' + range + '&user_id=' + user_id;
+		xhr.open("POST","core/ajax_db/propertyView_range.php",true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(params);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (range) {
-                    case range:
-                         var pagination = document.getElementById('#property-list');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                        var pagination = document.getElementById('house-hide');
+                        pagination.innerHTML = xhr.responseText;
             }
         };
     }

@@ -5,6 +5,7 @@ $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpat
 if(isset($_POST['price_range'])){
     $user_id= $_POST['user_id'];
     $pages = $_POST['pages'];
+    // var_dump($_POST['price_range']);
     // $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
     // $vowels = array("[", "]", "$");
     // $priceRange= str_replace($vowels,"", $_POST['price_range']);
@@ -12,7 +13,7 @@ if(isset($_POST['price_range'])){
     if($pages === 0 || $pages < 1){
         $showpages = 0 ;
     }else{
-        $showpages = ($pages*10)-10;
+        $showpages = ($pages*9)-9;
     }
     
     //Include database configuration file
@@ -25,9 +26,9 @@ if(isset($_POST['price_range'])){
         $priceRangeArr_= str_replace($vowels,"", $priceRange);
         $priceRangeArr= explode('-',$priceRangeArr_);
         $whereSQL = "WHERE price BETWEEN '".$priceRangeArr[0]."' AND '".$priceRangeArr[1]."'";
-        $orderSQL = " ORDER BY price ASC ,rand() Desc Limit $showpages,10";
+        $orderSQL = " ORDER BY price ASC ,rand() Desc Limit $showpages,9";
     }else{
-        $orderSQL = " ORDER BY created DESC ,rand() Desc Limit $showpages,10";
+        $orderSQL = " ORDER BY created DESC ,rand() Desc Limit $showpages,9";
     }
     
     //get product rows
@@ -147,29 +148,30 @@ if(isset($_POST['price_range'])){
    <!-- col -->
 
    <?php }
+
+    echo '</div>';
                      
-        $query1= $db->query("SELECT COUNT(*) FROM house $whereSQL $orderSQL ");
+        $query1= $db->query("SELECT COUNT(*) FROM house $whereSQL ");
         $row_Paginaion = $query1->fetch_array();
         $total_Paginaion = array_shift($row_Paginaion);
-        $post_Perpages = $total_Paginaion/10;
+        $post_Perpages = $total_Paginaion/9;
         $post_Perpage = ceil($post_Perpages); ?> 
-            
 
 
         <?php if($post_Perpage > 1){ ?>
          <nav>
              <ul class="pagination justify-content-center mt-3">
                  <?php if ($pages > 1) { ?>
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $pages-1; ?>)">Previous</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $pages-1; ?>,<?php echo $user_id; ?>)">Previous</a></li>
                  <?php } ?>
                  <?php for ($i=1; $i <= $post_Perpage; $i++) { 
                          if ($i == $pages) { ?>
-                      <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                      <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $i; ?>,<?php echo $user_id; ?>)" ><?php echo $i; ?> </a></li>
                       <?php }else{ ?>
-                     <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                     <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $i; ?>,<?php echo $user_id; ?>)" ><?php echo $i; ?> </a></li>
                  <?php } } ?>
                  <?php if ($pages+1 <= $post_Perpage) { ?>
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $pages+1; ?>)">Next</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseRangeLayout('<?php echo $priceRange; ?>',<?php echo $pages+1; ?>,<?php echo $user_id; ?>)">Next</a></li>
                  <?php } ?>
              </ul>
          </nav>
@@ -183,7 +185,6 @@ if(isset($_POST['price_range'])){
         // echo 'Product(s) not found';
     }
 
-    echo '</div>';
 }
 
 

@@ -95,14 +95,14 @@ class House extends Home {
                         <nav class="main-menus">
 
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#House_For_sale" onclick='houseCategories_SeachSector("House_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>House For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_sale',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#House_For_rent" onclick='houseCategories_SeachSector("House_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>House For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_rent',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Land_For_sale" onclick='houseCategories_SeachSector("Land_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Land & Plots<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Land_For_sale',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_sale" onclick='houseCategories_SeachSector("Apartment_For_sale",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Apartment For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_sale',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_rent" onclick='houseCategories_SeachSector("Apartment_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Apartment For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_rent',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#room_For_rent" onclick='houseCategories_SeachSector("room_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Room<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('room_For_rent',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Commerce_For_rent" onclick='houseCategories_SeachSector("commerce_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Commerce<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Commerce_For_rent',$province,$district,$sector);?></span></a></li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Offices_For_rent" onclick='houseCategories_SeachSector("Offices_For_rent",<?php echo "$province,$district,$sector,$pages,$user_id" ; ?>);'>Offices<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Offices_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#House_For_sale" onclick='houseCategories_SeachSector("House_For_sale",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>House For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#House_For_rent" onclick='houseCategories_SeachSector("House_For_rent",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>House For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('House_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Land_For_sale" onclick='houseCategories_SeachSector("Land_For_sale",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Land & Plots<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Land_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_sale" onclick='houseCategories_SeachSector("Apartment_For_sale",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Apartment For sale<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_sale',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Apartment_For_rent" onclick='houseCategories_SeachSector("Apartment_For_rent",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Apartment For rent<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Apartment_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#room_For_rent" onclick='houseCategories_SeachSector("room_For_rent",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Room<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('room_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Commerce_For_rent" onclick='houseCategories_SeachSector("commerce_For_rent",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Commerce<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Commerce_For_rent',$province,$district,$sector);?></span></a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Offices_For_rent" onclick='houseCategories_SeachSector("Offices_For_rent",<?php echo "$province,$district,$sector,$user_id,$pages" ; ?>);'>Offices<span class="badge badge-primary"><?php echo $this->housecountPOSTS_SeachSector('Offices_For_rent',$province,$district,$sector);?></span></a></li>
                             </ul>
                                 <a href="<?php echo (isset($_SESSION['key']))? HOME:F_INDEX; ?>" class="btn btn-primary btn-sm" style="float:right"><< Back</a>
                         </nav>
@@ -119,7 +119,7 @@ class House extends Home {
         if($pages === 0 || $pages < 1){
             $showpages = 0 ;
         }else{
-            $showpages = ($pages*10)-10;
+            $showpages = ($pages*9)-9;
         }
         
     $mysqli= $this->database;
@@ -129,7 +129,7 @@ class House extends Home {
 		Left JOIN sectors T ON H. sector = T. sectorcode
         WHERE H. categories_house ='$categories'
         and H. province= '{$province}' and H. districts= '{$district}'
-        and H. sector= '{$sector}' ORDER BY H. buy='sold' ,rand() Desc Limit $showpages,10");  ?>
+        and H. sector= '{$sector}' ORDER BY rand() , created_on3 Desc Limit $showpages,9");  ?>
     
  
         <div id="house-hide" class="property-list"> 
@@ -197,13 +197,13 @@ class House extends Home {
                             </span>
                             <?php if (isset($_SESSION['key'])) { ?>
                             <div class="text-muted clear-right" style="padding-bottom: 10px;">
-                                <form method="post" id="form-housecartitem<?php echo $house['code']; ?>add" class="float-right">
+                                <form method="post" id="form-housecartitem<?php echo $houses['code']; ?>add" class="float-right">
                                     <div style="display:inline-flex;" >
                                         <input type="hidden" style="width:30px;" name="user_id" value="<?php echo $user_id; ?>" />
                                         <input type="hidden" style="width:30px;" name="actions" value="add" />
-                                        <input type="hidden" style="width:30px;" name="code" value="<?php echo $house['code']; ?>" />
+                                        <input type="hidden" style="width:30px;" name="code" value="<?php echo $houses['code']; ?>" />
                                         <input type="hidden" class="form-control form-control-sm text-center mr-2" style="width:30px;" name="quantitys" value="1" size="2" readonly/>
-                                        <input type="button" onclick="xxda('add','<?php echo 'form-housecartitem'.$house['code'].'add'; ?>','<?php echo $house['code']; ?>');" value="Add to WatchList" class="btn btn-outline-success btn-sm " />
+                                        <input type="button" onclick="xxda('add','<?php echo 'form-housecartitem'.$houses['code'].'add'; ?>','<?php echo $houses['code']; ?>');" value="Add to WatchList" class="btn btn-outline-success btn-sm " />
                                     </div>
                                 </form>
                             </div>
@@ -250,13 +250,12 @@ class House extends Home {
                     }
                         $query1= $mysqli->query("SELECT COUNT(*) FROM house WHERE categories_house ='$categories'
                             and province= '{$province}' and districts= '{$district}'
-                            and sector= '{$sector}' ORDER BY buy='sold',rand() Desc ");
+                            and sector= '{$sector}' ");
 
                         $row_Paginaion = $query1->fetch_array();
                         $total_Paginaion = array_shift($row_Paginaion);
-                        $post_Perpages = $total_Paginaion/10;
+                        $post_Perpages = $total_Paginaion/9;
                         $post_Perpage = ceil($post_Perpages); ?> 
-                </div>
                 </div>
                 </div>
                 </div>
@@ -265,22 +264,24 @@ class House extends Home {
                 <nav>
                     <ul class="pagination justify-content-center mt-3">
                         <?php if ($pages > 1) { ?>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,".$pages-1; ?>)'>Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategories_SeachSector("<?php echo $categories ;?>"<?php echo ",$province,$district,$sector,$user_id,";?><?php echo $pages-1 ;?>)'>Previous</a></li>
                         <?php } ?>
                         <?php for ($i=1; $i <= $post_Perpage; $i++) { 
                                 if ($i == $pages) { ?>
-                            <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
+                            <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick='houseCategories_SeachSector("<?php echo $categories ;?>"<?php echo ",$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
                             <?php }else{ ?>
-                            <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
+                            <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick='houseCategories_SeachSector("<?php echo $categories ;?>"<?php echo ",$province,$district,$sector,$user_id,$i"; ?>)' ><?php echo $i; ?> </a></li>
                         <?php } } ?>
                         <?php if ($pages+1 <= $post_Perpage) { ?>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategoriesHomeSearch(<?php echo "$categories,$province,$district,$sector,$user_id,".$pages+1; ?>)'>Next</a></li>
+                            <!-- houseCategoriesHomeSearch -->
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick='houseCategories_SeachSector("<?php echo $categories ;?>"<?php echo ",$province,$district,$sector,$user_id,";?><?php echo $pages+1 ;?>)'>Next</a></li>
                         <?php } ?>
                     </ul>
                 </nav>
 
-                <?php }
-    
+                <?php } ?>
+        </div>
+    <?php
     }
 
     // THIS IS ONE FOR THE ADMIN AND AGENT TO VIEW MESSAGE IT HAVE BANNER AND PRICE DISCOUNT
@@ -306,7 +307,7 @@ class House extends Home {
         WHERE H. categories_house ='$categories' ORDER BY H. buy='sold' ,rand() Desc Limit $showpages,10");
         ?>
 
-        <div id="house-hide"> 
+        <div id="house-hide" > 
         
         <div class="tab-content">
         <div class="active tab-pane" id="<?php echo $categories; ?>">
@@ -483,7 +484,6 @@ class House extends Home {
             <div class="single-property-item ">
                 <i class="fa fa-clock-o bg-info text-light"></i>
             </div>
-        </div>
     </div>
     </div>
     </div>
@@ -507,6 +507,7 @@ class House extends Home {
              </ul>
          </nav>
         <?php } 
+    echo '</div>';
     }
 
     // THIS IS ONE FOR HOME IT HAVE BEST LAYOUT FOR HOUSE IT DOESN'T HAVE BANNER AND PRICE DISCOUNT
@@ -561,7 +562,7 @@ class House extends Home {
         if($pages === 0 || $pages < 1){
             $showpages = 0 ;
         }else{
-            $showpages = ($pages*10)-10;
+            $showpages = ($pages*9)-9;
         }
         $mysqli= $this->database;
         $query= $mysqli->query("SELECT * FROM house H
@@ -570,11 +571,10 @@ class House extends Home {
             Left JOIN sectors T ON H. sector = T. sectorcode
             Left JOIN cells C ON H. cell = C. codecell
             Left JOIN vilages V ON H. village = V. CodeVillage 
-        WHERE H. categories_house ='$categories' ORDER BY H. buy='sold' ,rand() Desc Limit $showpages,10");
+        WHERE H. categories_house ='$categories' ORDER BY rand(), H. created_on3 Desc Limit $showpages,9");
         ?>
        
-        <div id="house-hide" class="property-list"> 
-        
+        <div id="house-hide" class="property-list">
         <div class="tab-content">
         <div class="active tab-pane" id="<?php echo $categories; ?>">
 
@@ -694,9 +694,8 @@ class House extends Home {
                     $query1= $mysqli->query("SELECT COUNT(*) FROM house WHERE categories_house ='$categories' ");
                     $row_Paginaion = $query1->fetch_array();
                     $total_Paginaion = array_shift($row_Paginaion);
-                    $post_Perpages = $total_Paginaion/10;
+                    $post_Perpages = $total_Paginaion/9;
                     $post_Perpage = ceil($post_Perpages); ?> 
-    </div>
     </div>
     </div>
     </div>
@@ -705,20 +704,22 @@ class House extends Home {
          <nav>
              <ul class="pagination justify-content-center mt-3">
                  <?php if ($pages > 1) { ?>
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages-1; ?>)">Previous</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages-1; ?>,<?php echo $user_id ; ?>)">Previous</a></li>
                  <?php } ?>
                  <?php for ($i=1; $i <= $post_Perpage; $i++) { 
                          if ($i == $pages) { ?>
-                      <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                      <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>,<?php echo $user_id ; ?>)" ><?php echo $i; ?> </a></li>
                       <?php }else{ ?>
-                     <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                     <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>,<?php echo $user_id ; ?>)" ><?php echo $i; ?> </a></li>
                  <?php } } ?>
                  <?php if ($pages+1 <= $post_Perpage) { ?>
-                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages+1; ?>)">Next</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages+1; ?>,<?php echo $user_id ; ?>)">Next</a></li>
                  <?php } ?>
              </ul>
          </nav>
-        <?php } 
+        <?php } ?>
+    </div>
+<?php
     }
 
     public function housecart_item(){
@@ -872,8 +873,12 @@ class House extends Home {
             		?>
             
             <tr>
-            <td>Total:</td>
-            <td align="left" colspan="2"><strong><?php echo "Frw ".number_format($total_price); ?></strong></td>
+            <!-- <td>Total:</td> -->
+            <!-- <td align="left" colspan="2"> -->
+            <td align="center" colspan="3">
+                    <a href="<?php echo WATCH_LIST; ?>" class="btn btn-info"><i class="fas fa-eye"></i> View Watch-list</a>
+                <!-- <strong>< ?php echo "Frw ".number_format($total_price); ?></strong> -->
+            </td>
             </tr>
             </tbody>
             </table>		
@@ -1147,7 +1152,7 @@ class House extends Home {
 
     public function edit_delete_house($user_id,$userhouse_post,$house_id){
         
-        if( 4 != $userhouse_post && $user_id == $userhouse_post){ 
+        if(isset($_SESSION['key']) && $user_id == $userhouse_post){ 
         // if($user_id == $userhouse_post){ 
             $mysqli= $this->database;
             $query= $mysqli->query("SELECT * FROM house WHERE house_id = $house_id and user_id3 = $userhouse_post");
@@ -2096,7 +2101,7 @@ class House extends Home {
                     <div class="row">
 
             <?php $mysqli= $this->database;
-                  $result =$mysqli->query("SELECT * FROM business_request_home ORDER BY rand(), datetime Desc Limit 0,12");
+                  $result =$mysqli->query("SELECT * FROM business_request_home ORDER BY rand(), datetime Desc Limit 0,6");
                 
                     while ($user= $result->fetch_array()) { ?>
                         

@@ -46,7 +46,7 @@ class Watchlist extends House {
         if($pages === 0 || $pages < 1){
             $showpages = 0 ;
         }else{
-            $showpages = ($pages*10)-10;
+            $showpages = ($pages*9)-9;
         }
         $mysqli= $this->database;
         $query= $mysqli->query("SELECT * FROM house H
@@ -56,7 +56,7 @@ class Watchlist extends House {
             Left JOIN cells C ON H. cell = C. codecell
             Left JOIN vilages V ON H. village = V. CodeVillage 
             Left JOIN house_watchlist W ON H. house_id= W. house_id_list 
-        WHERE W. categories ='$categories' AND W. user_id3_list= '$user_id' ORDER BY modified ,rand() Desc Limit $showpages,10");
+        WHERE W. categories ='$categories' AND W. user_id3_list= '$user_id' ORDER BY rand(), modified Desc Limit $showpages,9");
         ?>
     
         <div id="house-hide" class="property-list"> 
@@ -172,12 +172,13 @@ class Watchlist extends House {
                                 <strong>No Record</strong>
                             </div></div>'; 
                 }
-                    $query1= $mysqli->query("SELECT COUNT(*) FROM house WHERE categories_house ='$categories' ");
+                    $query1= $mysqli->query("SELECT COUNT(*) FROM house H
+                    Left JOIN house_watchlist W ON H. house_id= W. house_id_list 
+                    WHERE W. categories ='$categories' AND W. user_id3_list= '$user_id' ");
                     $row_Paginaion = $query1->fetch_array();
                     $total_Paginaion = array_shift($row_Paginaion);
-                    $post_Perpages = $total_Paginaion/10;
+                    $post_Perpages = $total_Paginaion/9;
                     $post_Perpage = ceil($post_Perpages); ?> 
-    </div>
     </div>
     </div>
     </div>
@@ -186,20 +187,22 @@ class Watchlist extends House {
         <nav>
             <ul class="pagination justify-content-center mt-3">
                 <?php if ($pages > 1) { ?>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages-1; ?>)">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseWatch_ListCategories('<?php echo $categories; ?>',<?php echo $pages-1; ?>,<?php echo $user_id ; ?>)">Previous</a></li>
                 <?php } ?>
                 <?php for ($i=1; $i <= $post_Perpage; $i++) { 
                         if ($i == $pages) { ?>
-                    <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                    <li class="page-item active"><a href="javascript:void(0)"  class="page-link" onclick="houseWatch_ListCategories('<?php echo $categories; ?>',<?php echo $i; ?>,<?php echo $user_id ; ?>)" ><?php echo $i; ?> </a></li>
                     <?php }else{ ?>
-                    <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $i; ?>)" ><?php echo $i; ?> </a></li>
+                    <li class="page-item"><a href="javascript:void(0)"  class="page-link" onclick="houseWatch_ListCategories('<?php echo $categories; ?>',<?php echo $i; ?>,<?php echo $user_id ; ?>)" ><?php echo $i; ?> </a></li>
                 <?php } } ?>
                 <?php if ($pages+1 <= $post_Perpage) { ?>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseCategoriesHome('<?php echo $categories; ?>',<?php echo $pages+1; ?>)">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="houseWatch_ListCategories('<?php echo $categories; ?>',<?php echo $pages+1; ?>,<?php echo $user_id ; ?>)">Next</a></li>
                 <?php } ?>
             </ul>
         </nav>
         <?php } 
+    
+    echo '</div>';
     }
     
     public function houseWatch_ListcountPOSTS($categories,$user_id)

@@ -35,8 +35,8 @@ class Home extends Users {
             $fileActualExt = strtolower(end($fileExt));
 
              $filenames = (strlen($fileName) > 10)? 
-                     strtolower(date('Y').'_'.rand(10,100).substr($fileName,0,4).".".$fileActualExt):
-                     strtolower(date('Y').'_'.rand(10,100).$fileName);
+                     strtolower(date('Y').'_'.rand(10,1000).substr($fileName,0,4).".".$fileActualExt):
+                     strtolower(date('Y').'_'.rand(10,1000).$fileName);
 
             $valued[] = $filenames;
 
