@@ -137,6 +137,28 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '#contacts_agent', function (e) {
+        e.stopPropagation();
+        var user_id = $(this).data('user');
+
+        $.ajax({
+            url: 'core/ajax_db/property-readmore.php',
+            method: 'POST',
+            dataType: 'text',
+            data: {
+                contacts_agent: 'contacts_agent',
+                user_id_agent: user_id,
+
+            }, success: function (response) {
+                $(".popupTweet").html(response);
+                $(".close-imagePopup").click(function () {
+                    $(".house-popup").hide();
+                });
+                console.log(response);
+            }
+        });
+    });
+
 
     $(document).on('click', '#submit_form', function (e) {
         var form_id = $('#form-house');

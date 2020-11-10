@@ -8,7 +8,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-lock"></i></span>
                             </div>
-                            <input type="password" class="form-control" id="currentPassword"  placeholder="Current Password">
+                            <input type="text" class="form-control" id="currentPassword"  placeholder="Current Password">
                         </div>
 
                         <div class="input-group mb-3">
@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <div class="clearfix">
-                                <a href="<?php echo PROFILE ;?>" class="float-left" style="padding: 8px; text-decoration: none; background: darkgray;color:white;border: none; border-radius: 4px;">Cancel</a>
+                                <a href="<?php echo HOME ;?>" class="float-left" style="padding: 8px; text-decoration: none; background: darkgray;color:white;border: none; border-radius: 4px;">Cancel</a>
                                 <button type="button" onclick="settingsUsernamepass('settingspassword');" class="btn btn-danger float-right">Save Changes</button>
                             </div>
                         </div>

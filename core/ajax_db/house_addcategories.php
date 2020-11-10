@@ -1,9 +1,9 @@
 <?php 
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 
 if (isset($_POST['house_view']) && !empty($_POST['house_view'])) {
-    $user_id= $_SESSION['key'];
+    $user_id= $_POST['house_view'];
     $get_province = mysqli_query($db,"SELECT * FROM provinces");   
      ?>
   <!-- <script src="< ?php echo BASE_URL_LINK ;?>dist/js/country_login_ajax-db.js"></script> -->
@@ -113,7 +113,7 @@ if (isset($_POST['house_view']) && !empty($_POST['house_view'])) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-user mr-1" aria-hidden="true"></i></span>
                             </div>
-                            <input type="text" class="form-control" name="authors"  id="authors" placeholder="authors">
+                            <input type="text" class="form-control" name="authors"  id="authors" placeholder="Your name">
                           </div>
                       </div>
 
@@ -329,7 +329,7 @@ if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
     $cell=  $users->test_input($_POST['codecell']);
     $sector =  $users->test_input($_POST['sectorcode']);
     $village =  $users->test_input($_POST['CodeVillage']);
-    $code =  $_POST['name_of_house'];
+    $code = $districts;
     $codes = (strlen($code) > 10)? 
     strtolower(date('Y').'_'.rand(10,100).substr($code,0,4)):
     strtolower(date('Y').'_'.rand(10,100).$code);

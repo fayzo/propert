@@ -78,6 +78,18 @@ width:100%;
 color:#fff;
 display:block;
 }
+.login-form .group .select{
+width:100%;
+color:#aaa;
+display:block;
+border:none;
+border-radius:25px;
+background:rgba(255,255,255,.1);
+outline: none;
+}
+.login-form .group .select option{
+color:rgb(10, 10, 10);
+}
 .login-form .group .input,
 .login-form .group .button{
 border:none;

@@ -1,6 +1,6 @@
 <?php
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 
 if(isset($_POST['price_range'])){
     $user_id= $_POST['user_id'];
@@ -101,6 +101,20 @@ if(isset($_POST['price_range'])){
                            <div class="text-danger price-change" style="text-decoration: line-through;">
                            <?php echo number_format($houses['price_discount']); ?> Frw </div><?php } ?>
                        </span>
+                       <?php if (isset($_SESSION['key'])) { ?>
+                       <div class="text-muted clear-right" style="padding-bottom: 10px;">
+                            <form method="post" id="form-housecartitem<?php echo $houses['code']; ?>add" class="float-right">
+                                <div style="display:inline-flex;" >
+                                    <input type="hidden" style="width:30px;" name="user_id" value="<?php echo $user_id; ?>" />
+                                    <input type="hidden" style="width:30px;" name="actions" value="add" />
+                                    <input type="hidden" style="width:30px;" name="code" value="<?php echo $houses['code']; ?>" />
+                                    <input type="hidden" class="form-control form-control-sm text-center mr-2" style="width:30px;" name="quantitys" value="1" size="2" readonly/>
+                                    <input type="button" onclick="xxda('add','<?php echo 'form-housecartitem'.$houses['code'].'add'; ?>','<?php echo $houses['code']; ?>');" value="Add to WatchList" class="btn btn-outline-success btn-sm " />
+                                </div>
+                            </form>
+                        </div>
+                        <?php } ?>
+
                </div>
                Publish <?php echo $house->timeAgo($houses['created_on3']); ?>
            </div>

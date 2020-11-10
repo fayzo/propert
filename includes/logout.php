@@ -9,6 +9,8 @@ unset($_SESSION['key']);
 unset($_SESSION['profile_img']);
 unset($_SESSION['approval']);
 unset($_SESSION['chat']);
+unset($_SESSION['register_as']);
+unset($_SESSION['admin']);
 session_unset();
 session_destroy();
 header ('location: '.LOGIN.'');

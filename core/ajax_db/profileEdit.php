@@ -1,6 +1,6 @@
 <?php
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -9,7 +9,7 @@ if(!empty($_FILES['picture']['name'])){
 
     $id= $_POST['edit_profile'];
     $files = $_FILES['picture'];
-    $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/twitter_ex/assets/image/users_profile_cover/';
+    $uploadDir = DOCUMENT_ROOT.'/assets/image/users_profile_cover/';
     // $fileName = time().'_'.basename($_FILES['picture']['name']);
     $fileNames= basename($files['name']);
     $fileExt = explode('.', $fileNames);
@@ -49,7 +49,7 @@ if(!empty($_FILES['picture']['name'])){
      var_dump($update);
      var_dump($_FILES['picture']);
     //Load JavaScript function to show the upload status
-    $path= $_SERVER['DOCUMENT_ROOT'].'/twitter_ex/assets/image/users_profile_cover/'.$fileName.'';
+    $path= DOCUMENT_ROOT.'/assets/image/users_profile_cover/'.$fileName.'';
     $strpos_countsTo = strpos($path, 'assets/image/users_profile_cover/'.$fileName.'');
     $path_replace= substr_replace($path,'', 0,$strpos_countsTo);
     echo '<script type="text/javascript">window.top.window.completeUpload(' . $result . ',\'' .$path_replace. '\');</script>  ';
@@ -59,7 +59,7 @@ if(!empty($_FILES['pictureLogo']['name'])){
 
     $id= $_POST['edit_profile'];
     $files = $_FILES['pictureLogo'];
-    $uploadDir = $_SERVER['DOCUMENT_ROOT'].'/twitter_ex/assets/image/logo/';
+    $uploadDir = DOCUMENT_ROOT.'/assets/image/logo/';
     // $fileName = time().'_'.basename($_FILES['picture']['name']);
     $fileNames= basename($files['name']);
     $fileExt = explode('.', $fileNames);
@@ -100,7 +100,7 @@ if(!empty($_FILES['pictureLogo']['name'])){
      var_dump($update);
      var_dump($_FILES['picture']);
     //Load JavaScript function to show the upload status
-    $path= $_SERVER['DOCUMENT_ROOT'].'/twitter_ex/assets/image/logo/'.$fileName.'';
+    $path= DOCUMENT_ROOT.'/assets/image/logo/'.$fileName.'';
     $strpos_countsTo = strpos($path, 'assets/image/logo/'.$fileName.'');
     $path_replace= substr_replace($path,'', 0,$strpos_countsTo);
     echo '<script type="text/javascript">window.top.window.completeUpload(' . $result . ',\'' .$path_replace. '\');</script>  ';

@@ -6,21 +6,45 @@ include('class/Users.php');
 include('class/Home.php');
 include('class/House.php');
 include('class/Notification.php');
+include('class/Watchlist.php');
+include('class/Profile_house_agent.php');
+include('class/Property_request.php');
 
 
 define('BASE_URL','http://localhost/twitter_ex/');
-define('BASE_URL_LINK', BASE_URL.'assets/');
 define('HOME', BASE_URL.'index.php');
+define('BASE_URL_LINK', BASE_URL.'assets/');
 define('LOGIN', BASE_URL.'includes/login.php');
 define('LOGOUT', BASE_URL.'includes/logout.php');
 define('ADMIN', BASE_URL.'admin.php');
+
+// UPLOAD PHOTO
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/twitter_ex');
+// UPLOAD PHOTO
+
+// THIS IS HOUSE LINK
+define('F_INDEX', BASE_URL.'fayzo.index');
+define('F_PROPERTY_REQUEST', BASE_URL.'fayzo.property_request');
+define('F_VIEW_ALL_PROPERTY', BASE_URL.'fayzo.view_all_property');
+
+// THIS IS HOUSE LINK
 define('SETTING', BASE_URL.'settings.php');
 define('PROFILE', BASE_URL.'profile.php');
 define('PROFILE_EDIT', BASE_URL.'profile_edit.php');
 define('VIEW_MESSAGE', BASE_URL.'message.php');
 define('WATCH_LIST', BASE_URL.'watchlist.php');
 define('PROPERTY_REQUEST', BASE_URL.'property_request.php');
+define('VIEW_ALL_PROPERTY', BASE_URL.'view_all_property.php');
+// END HOUSE LINK
 
+// TWITTER SOCIAL MEDIA 
+define('TWITTER', 'https://twitter.com/');
+define('INSTAGRAM', 'https://www.instagram.com/');
+define('FACEBOOK', 'https://www.facebook.com/');
+define('GOOGLE_PLUS', 'https://www.google.com/');
+define('MAIL', 'https://www.mail.com/');
+
+// TWITTER SOCIAL MEDIA 
 
 // DEFAULT IMAGE USERS 
 define( 'NO_PROFILE_IMAGE', 'image/users_profile_cover/empty-profile.png');

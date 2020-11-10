@@ -1,6 +1,6 @@
 <?php 
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 
 if (isset($_POST['available']) && !empty($_POST['available'])) {
     $user_ids= $_SESSION['key'];
@@ -176,7 +176,7 @@ if (isset($_POST['showpopupdelete']) && !empty($_POST['showpopupdelete'])) {
             <div class="card">
             <span id='responseDeletePost<?php echo $houses['house_id']; ?>'></span>
                 <div class="card-header">
-                    <h5 class="text-center text-muted">Are you sure you want to delete this Posts?</h5>
+                    <h5 class="text-center text-muted">Are you sure you want to delete This Posts?</h5>
                 <div class="user-block">
                     <div class="user-blockImgBorder">
                         <div class="user-blockImg">
@@ -197,25 +197,26 @@ if (isset($_POST['showpopupdelete']) && !empty($_POST['showpopupdelete'])) {
                 </div>
                 <div class="card-body">
 
-                <div class="shadow-lg">
+                <!-- <div class="shadow-lg"> -->
                     <div class="property-list" id="property-list">
                     <div class="timeline">
                     <div class="single-property-item ">
-                    <?php echo $house->buychangesColor($houses['buy']); ?>
+                    <!-- < ?php echo $house->buychangesColor($houses['buy']); ?> -->
                     <!-- <i class="bg-success text-light require" >Sale </i> -->
-                    <i class="fa fa-user"></i>
+                    <!-- <i class="fa fa-user"></i> -->
 
-                    <?php if($houses['discount'] != 0){ ?>
-                    <?php echo $house->PercentageDiscount($houses['discount']); ?>
-                    <?php }else { echo ''; ?>
+                    <!-- < ?php if($houses['discount'] != 0){ ?>
+                    < ?php echo $house->PercentageDiscount($houses['discount']); ?>
+                    < ?php }else { echo ''; ?> -->
                         <!-- <span class="bg-info text-light" > 0% </span>  -->
-                    <?php } ?>
+                    <!-- < ?php } ?> -->
 
                     <div class="row timeline-item">
 
                         <div class="col-md-4 px-0">
                             <div class="property-pic">
-                                <?php echo $house->banner($houses['banner']) ;
+                                <?php 
+                                // echo $house->banner($houses['banner']) ;
                                         $file = $houses['photo']."=".$houses['other_photo'];
                                         $expode = explode("=",$file);  ?>
                                 <img class="propertyPicture" src="<?php echo BASE_URL.'uploads/house/'.$expode[0]; ?>" >
@@ -306,12 +307,13 @@ if (isset($_POST['showpopupdelete']) && !empty($_POST['showpopupdelete'])) {
                         </div><!-- row timeline-item-->
                     </div><!-- single -->
                     </div><!-- END TIMELINE -->
-                    <div class="single-property-item ">
+                    <!-- <div class="single-property-item ">
                         <i class="fa fa-clock-o bg-info text-light"></i>
+                    </div> -->
                     </div>
-                    </div><!-- property-list -->
+                    <!-- property-list -->
                       
-                </div><!-- shadow -->
+                <!-- </div>shadow -->
 
                 </div><!-- card-body -->
                 </div><!-- card-body -->

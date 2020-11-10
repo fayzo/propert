@@ -1,0 +1,11 @@
+RewriteEngine On
+# Handle Authorization Header
+
+# Redirect Trailing Slashes If Not A Folder...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !\.php$
+
+RewriteRule ^([0-9a-zA-Z_-]+)/?$ profile.php?username=$1 [NC,L,QSA]
+RewriteRule ^([0-9a-zA-Z_-]+).(index|view_all_property|property_request)/?$ $2.php?username=$1 [NC,L,QSA]
+

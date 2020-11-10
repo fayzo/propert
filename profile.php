@@ -1,3 +1,4 @@
+<?php include "Get_usernameProfile.php"?>
 <?php include "header.php"?>
     
 <!-- <body> -->
@@ -17,8 +18,10 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="<?php echo HOME; ?>">Home</a></li>
+                  <li class="breadcrumb-item"><a href="<?php echo (isset($_SESSION['key']))? HOME:F_INDEX ; ?>">Home</a></li>
+                  <?php if(isset($_SESSION['key'])){ ?> 
                   <li class="breadcrumb-item active"><a href="<?php echo PROFILE_EDIT; ?>">Profile Edit</a></li>
+                  <?php } ?>
                 </ol>
             </div>
         </div>
@@ -36,29 +39,25 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-7">
-                    <?php 
-                      $result =$db->query("SELECT * FROM users WHERE user_id= $user_id");
-                      $user= $result->fetch_array();
-                    ?>
-                      <h2 class="lead"><b><?php echo $user['firstname']." ".$user['lastname']; ?></b></h2>
+                      <h2 class="lead"><b><?php echo $profileData['firstname']." ".$profileData['lastname']; ?></b></h2>
                       <!-- <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p> -->
                       <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-building"></i></span> Address: <?php echo $user['location']; ?></li>
-                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-phone"></i></span> Phone : <?php echo $user['telephone']; ?></li>
+                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-building"></i></span> Address: <?php echo $profileData['location']; ?></li>
+                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-phone"></i></span> Phone : <?php echo $profileData['telephone']; ?></li>
                       </ul>
                     </div>
                     <div class="col-5 text-center single-agent-profile">
                         <div class="sa-pic">
-                              <?php if (!empty($user['profile_img'])) { ?>
-                                  <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$user['profile_img'] ;?>" alt="" class="img-circle img-fluid" alt="User Image" >
+                              <?php if (!empty($profileData['profile_img'])) { ?>
+                                  <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$profileData['profile_img'] ;?>" alt="" class="img-circle img-fluid" alt="User Image" >
                               <?php  }else{ ?>
-                                  <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User Image">
+                                  <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User Image" class="img-circle img-fluid">
                               <?php } ?>
                             <!-- <img src="< ?php echo BASE_URL;?>assets/image/img/agent/agent-1.jpg" alt="" class="img-circle img-fluid"> -->
                             <div class="hover-social">
-                                <a href="https://twitter.com/<?php echo $user['twitter']; ?>" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/<?php echo $user['facebook']; ?>" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="https://www.instagram.com/<?php echo $user['instagram']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="<?php echo TWITTER.$profileData['twitter']; ?>" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="<?php echo FACEBOOK.$profileData['facebook']; ?>" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="<?php echo INSTAGRAM.$profileData['instagram']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
                             </div>
                         </div>
                     </div>
@@ -66,12 +65,18 @@
                 </div>
                 <div class="card-footer">
                   <div class="text-right">
-                    <a href="#" class="btn btn-sm bg-teal">
-                      <i class="fas fa-comments"></i> Message
-                    </a>
-                    <a href="#" class="btn btn-sm btn-primary">
+                    <?php if ($profileData['user_id'] != isset($_SESSION['key'])) { ?>
+                      <a href="javascript:void(0)" id="contacts_agent" data-user="<?php echo $profileData['user_id'];?>"  class="btn btn-sm bg-teal">
+                        <i class="fas fa-comments"></i> Message
+                      </a>
+                    <?php }else { ?>
+                      <a href="<?php echo VIEW_MESSAGE; ?>" class="btn btn-sm bg-teal">
+                         <i class="fas fa-eye"></i> Message
+                      </a>
+                    <?php } ?>
+                    <!-- <a href="#" class="btn btn-sm btn-primary">
                       <i class="fas fa-user"></i> View Profile
-                    </a>
+                    </a> -->
                   </div>
                 </div>
               </div>
@@ -85,14 +90,14 @@
 
                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                <p class="text-muted"><?php echo $user['location']; ?></p>
+                <p class="text-muted"><?php echo $profileData['location']; ?></p>
 
                 <hr>
 
                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
                 <p class="text-muted">
-                <?php echo $user['skills']; ?>
+                <?php echo $profileData['skills']; ?>
 
                 </p>
 
@@ -102,7 +107,7 @@
 
                 <p class="text-muted">
 
-                <?php echo $user['notes']; ?>
+                <?php echo $profileData['notes']; ?>
                 </p>
               </div>
               <!-- /.card-body -->
@@ -112,8 +117,8 @@
           </div>
           <!-- /.col -->
           <div class="col-md-9">
-                  <?php echo $house->property_navListHome('House_For_sale',1,$user_id); ?>
-                  <?php echo $house->houseListHome('House_For_sale',1,$user_id); ?>
+                  <?php echo $profile_house_agent->house_Profile_house_agentNavbar('House_For_sale',1,$profileData['user_id']); ?>
+                  <?php echo $profile_house_agent->house_Profile_house_agentHome('House_For_sale',1,$profileData['user_id']); ?>
           </div>
           <!-- /.col -->
         </div>

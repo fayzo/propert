@@ -1,24 +1,11 @@
-<?php
-include "core/init.php";
-
-if ($users->loggedin() == false) {
-    header('location: '.LOGIN.'');
-}else if($users->loggedin() == true) {
-    $user= $home->userData($_SESSION['key']);
-    $businessDetails= $home->businessData('1');
-    $user_id= $_SESSION['key'];
-    $notific= $notification->getNotificationCount($user_id);
-
-}
-
-echo $house->housecart_item(); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- favicon must be with index website to compress it is /favicon.io/favicon.cc-->
+	<!-- <link rel="icon"  type="image/png" href="< ?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" size"32x32" > -->
 
      <!-- Google Font -->
      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -40,7 +27,7 @@ echo $house->housecart_item();
 	<link rel="stylesheet" href="<?php echo BASE_URL;?>assets/css/imagePopup.css" type="text/css">
 	<!-- <link rel="stylesheet" href="<?php echo BASE_URL;?>assets/css/jquery.range.css" type="text/css"> -->
     <link rel="stylesheet" href="<?php echo BASE_URL_LINK ;?>css/ui.totop.css" >
-	<link rel="stylesheet" href="<?php echo BASE_URL;?>profile.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo BASE_URL;?>assets/css/profile.css" type="text/css">
 
     <script type="text/javascript">
     
@@ -166,6 +153,26 @@ echo $house->housecart_item();
             }
         };
     }
+
+    
+    // THIS IS FOR FOOTER SEARCH SECTOR HOUSE
+
+    function houseCategoriesFooter_SeachSector(categories,province,district,sector,pages,user_id){
+        var params = '&pages='+pages+'&categories='+categories+'&province='+province+'&district='+district+'&sector='+sector+'&user_id='+user_id;
+		http=new XMLHttpRequest();
+		http.open("POST","core/ajax_db/getcell.php",true);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+		http.send(params);
+		http.onreadystatechange = function() 
+		{//Call a function when the sector changes.
+		// document.getElementById("codecell").innerHTML=http.responseText;
+		// if(document.getElementById('codecell').value!=="No Cell Available")
+		document.getElementById("house_hidden").innerHTML=http.responseText;
+		document.form.name.disabled=false;
+		
+		}		
+	}
+  
 	
 		
 	// Get Villages list
@@ -236,6 +243,57 @@ echo $house->housecart_item();
         };
     }
   
+    function houseWatch_ListCategories(categories,id,user_id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'core/ajax_db/watch_list_Fecth.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                switch (categories) {
+                    case categories:
+                         var pagination = document.getElementById('house-hide');
+                         pagination.innerHTML = xhr.responseText;
+                        break;
+                }
+            }
+        };
+    }
+
+    function property_requestCategories(categories,id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'core/ajax_db/property_request_Fecth.php?pages=' + id + '&categories=' + categories, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                switch (categories) {
+                    case categories:
+                         var pagination = document.getElementById('request-hide');
+                         pagination.innerHTML = xhr.responseText;
+                        break;
+                }
+            }
+        };
+    }
+
+    function house_agentCategories(categories,id,user_id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'core/ajax_db/house_agent_Fecth.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                switch (categories) {
+                    case categories:
+                         var pagination = document.getElementById('house-hide');
+                         pagination.innerHTML = xhr.responseText;
+                        break;
+                }
+            }
+        };
+    }
+  
     function houseRange(range,id,user_id) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/house_add.php?pages=' + id + '&price_range=' + range + '&user_id=' + user_id, true);
@@ -276,7 +334,8 @@ echo $house->housecart_item();
         var form = document.getElementById(formx);
         var formData = new FormData(form);
         // Add any event handlers here...
-        xhr.open('POST', 'index.php?actions=' + requests + '&code=' + id, true);
+        xhr.open('POST', 'index.php?actions=' + requests + '&code=' + id , true);
+        xhr.open('POST', 'view_all_property.php?actions=' + requests + '&code=' + id , true);
         xhr.send(formData);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
@@ -292,6 +351,48 @@ echo $house->housecart_item();
             }
         };
     }
+    
+    function xxda_watch_list_delete(requests,formx, id) {
+        var xhr = new XMLHttpRequest();
+        var form = document.getElementById(formx);
+        var formData = new FormData(form);
+        // Add any event handlers here...
+        xhr.open('POST', 'core/ajax_db/watch_list_Fecth.php?actions=' + requests + '&code=' + id , true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                $("#response_msg_watchlist").html('<div class="alert alert-success alert-dismissible fade show text-center">'+
+                     '<button class="close" data-dismiss="alert" type="button">'+
+                         '<span>&times;</span>'+
+                     '</button> <strong>SUCCESS</strong>'+' </div>');
+                 $('#response_hide_watchlist'+ id).hide();
+                 setInterval(function () {
+                    $("#response_msg_watchlist").fadeOut();
+                            }, 2000);
+            }
+        };
+    }
+    
+    function xxda_prof_house_agent_delete(requests,formx, id) {
+        var xhr = new XMLHttpRequest();
+        var form = document.getElementById(formx);
+        var formData = new FormData(form);
+        // Add any event handlers here...
+        xhr.open('POST', 'core/ajax_db/house_agent_Fecth.php?actions=' + requests + '&code=' + id , true);
+        xhr.send(formData);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                $("#response_msg_watchlist").html( xhr.responseText);
+                 $('#response_hide_watchlist'+ id).hide();
+                 setInterval(function () {
+                    $("#response_msg_watchlist").fadeOut();
+                            }, 2000);
+            }
+        };
+    }
+// END OF HOUSE JAVASCRIPT
+
+// CAR FOR BUY AND SELLING FOR DEALER
 
 
     </script>

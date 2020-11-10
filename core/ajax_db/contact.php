@@ -7,7 +7,7 @@
 
 <?php
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 if(isset($_POST['key'])){
 
 if ($_POST['key'] == 'client_request_home') {
@@ -303,8 +303,8 @@ if(isset($_POST['contacts_business'])){ ?>
     <span class="col-sm-12 col-md-3  colose">
         <button class="close-imagePopup"><i class="fa fa-times" aria-hidden="true"></i></button>
     </span>
-    <div class="img-popup-wrap" id="popupEnd">
-        <div class="img-popup-body">
+    <div class="img-popup-wrap" id="popupEnd" style="max-width: 409px;">
+        <div class="img-popup-body" >
 
         <div class="card">
             <div class="card-header">

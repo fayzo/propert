@@ -18,12 +18,19 @@ class Users extends Db{
         global $db;
         $this->database=$db;
     }
+
+    public function preventUsersAccess($request,$currentfile,$currently)
+    {
+       if ($request == 'GET' && $currentfile == $currently) {
+            header('Location: '.INDEX.'');
+        }
+    }
     
     public function login($email,$password,$datetime)
     {
        $mysqli= $this->database;
-       $sql= $mysqli->query("SELECT user_id,username,approval,profile_img, chat  FROM users WHERE username ='{$email}' AND password='{$password}' OR email ='{$email}'and password='{$password}' ");
-       $sql1= $mysqli->query("SELECT user_id ,username,profile_img ,approval, chat FROM users WHERE username ='{$email}' or email ='{$email}'");
+       $sql= $mysqli->query("SELECT user_id,username,approval,profile_img, chat,register_as,admin  FROM users WHERE username ='{$email}' AND password='{$password}' OR email ='{$email}'and password='{$password}' ");
+       $sql1= $mysqli->query("SELECT user_id ,username,profile_img ,approval, chat,register_as,admin FROM users WHERE username ='{$email}' or email ='{$email}'");
 
         $row= $sql->fetch_assoc();
         $rows= $sql1->fetch_assoc();
@@ -34,6 +41,8 @@ class Users extends Db{
             $_SESSION['approval'] = $row['approval'];
             $_SESSION['profile_img'] = $row['profile_img'];
             $_SESSION['chat'] = $row['chat'];
+            $_SESSION['register_as'] = $row['register_as'];
+            $_SESSION['admin'] = $row['admin'];
             $mysqli->query("UPDATE users SET counts_login= counts_login + 1 WHERE email='{$email}' AND password= '{$password}' OR username ='{$email}' AND password='{$password}' ");
             $mysqli->query("UPDATE users SET last_login = '{$datetime}'  WHERE email='{$email}' AND password= '{$password}' OR username ='{$email}' AND password='{$password}' ");
             $mysqli->query("UPDATE users SET chat = 'on'  WHERE email='{$email}' AND password= '{$password}' OR username ='{$email}' AND password='{$password}' ");
@@ -49,6 +58,8 @@ class Users extends Db{
             $_SESSION['profile_img'] = $rows['profile_img'];
             $_SESSION['approval'] = $rows['approval'];
             $_SESSION['chat'] = $rows['chat'];
+            $_SESSION['register_as'] = $row['register_as'];
+            $_SESSION['admin'] = $row['admin'];
             exit ('<div class="alert alert-danger alert-dismissible fade show text-center">
                     <button class="close" data-dismiss="alert" type="button">
                         <span>&times;</span>
@@ -85,6 +96,7 @@ class Users extends Db{
             'lastname' => 'lastname', 
             'email' => 'email', 
             'password' => 'password', 
+            'register_as' => 'register_as', 
             'date_registry' => 'date_registry', 
             'last_login' => 'datetime', 
             'approval' => 'off',
@@ -112,6 +124,7 @@ class Users extends Db{
             'firstname' => 'firstname', 
             'lastname' => 'lastname', 
             'username' => 'username', 
+            'register_as' => 'register_as', 
             'password' => 'password', 
             'date_registry' => 'date_registry', 
             'last_login' => 'datetime', 
@@ -379,7 +392,80 @@ class Users extends Db{
 		$result = $mysqli->query($query);
 		$rowcount = $result->num_rows;
 		return $rowcount;	
-	}
+    }
+    
+    public function updateQuery($table, $data, $conditions){
+		    $mysqli= $this->database;
+            $colvalSet = '';
+            $whereSql = '';
+            $i = 0;
+            // if(!array_key_exists('modified',$data)){
+            //     $data['modified'] = date("Y-m-d H:i:s");
+            // }
+            foreach($data as $key=>$val){
+                $pre = ($i > 0)?', ':'';
+                $colvalSet .= $pre.$key."='".$val."'";
+                $i++;
+            }
+            if(!empty($conditions)&& is_array($conditions)){
+                $whereSql .= ' WHERE ';
+                $i = 0;
+                foreach($conditions as $key => $value){
+                    $pre = ($i > 0)?' AND ':'';
+                    $whereSql .= $pre.$key." = '".$value."'";
+                    $i++;
+                }
+            }
+            $query = "UPDATE ".$table." SET ".$colvalSet.$whereSql;
+            $update = $mysqli->query($query);
+            // return $update?$mysqli->affected_rows:false;
+            //  var_dump($update );
+
+    }
+
+    public function insertQuery($table,$fields=array())
+    {
+        $mysqli= $this->database;
+        function addQuotes($str){
+            return "'$str'";
+        }
+         $valued = array();
+        # Surround values by quotes
+        if(!array_key_exists('modified',$fields)){
+            $fields['modified'] = date("Y-m-d H:i:s");
+            }
+        foreach ($fields as $key => $value) {
+            $valued[] = addQuotes($value);
+        }
+        
+        # Build the column
+        $columns = implode(",", array_keys($fields));
+        
+        # Build the values
+        $values = implode(",", array_values($valued));
+        # Build the insert query
+        $queryl = "INSERT INTO $table (".$columns.") VALUES (".$values.")";
+        $query= $mysqli->query($queryl);
+        // var_dump( $queryl );
+    }
+
+    public function delete($table, $conditions){
+        $mysqli= $this->database;
+        $whereSql = '';
+        if(!empty($conditions) && is_array($conditions)){
+            $whereSql .= ' WHERE ';
+            $i = 0;
+            foreach($conditions as $key => $value){
+                $pre = ($i > 0)?' AND ':'';
+                $whereSql .= $pre.$key." = '".$value."'";
+                $i++;
+            }
+        }
+        $query = "DELETE FROM ".$table.$whereSql;
+        $delete = $mysqli->query($query);
+        // return $delete?true:false;
+        // var_dump( $delete );
+    }
 
     public function timeAgo($datetime)
     {
@@ -434,6 +520,103 @@ class Users extends Db{
         
     }
 
+    
+    public function UserEmailalreadyTookenSettings($table,$arrayselects=array(),$conditions = array())
+    {
+        $mysqli= $this->database;
+        //  username Already Tooken
+        $sql = 'SELECT ';
+        $select="";
+        $select= array_keys($arrayselects);
+        $select = $select[0];
+        $sql .= (!empty($select))?$select:'*';
+        $sql .= ' FROM '.$table;
+        $sql .= ' WHERE ';
+        $condition= $conditions;
+        $condition = array_diff_key($condition, [
+            'email' => 'email', 
+            ]);
+        $i= 0;
+        foreach($condition as $key => $value){
+             $pre = ($i > 0)?' OR ':'';
+             $sql .= $pre.$key." = '".$value."'";
+             $i++;
+         }
+         $query= $mysqli->query($sql);
+         $row = $query->fetch_assoc();
+
+         //  Email Already Tooken
+
+        $sql1 = 'SELECT ';
+        $select="";
+        $select= array_keys($arrayselects);
+        $select = $select[1];
+        $sql1 .= (!empty($select))?$select:'*';
+        $sql1 .= ' FROM '.$table;
+        $sql1 .= ' WHERE ';
+        $conditionz= $conditions;
+        $conditionz = array_diff_key($conditionz, [
+            'username' => 'username', 
+            ]);
+        $i= 0;
+        foreach($conditionz as $key => $value){
+             $pre = ($i > 0)?' OR ':'';
+             $sql1 .= $pre.$key." = '".$value."'";
+             $i++;
+         }
+         $querys= $mysqli->query($sql1);
+         $rows = $querys->fetch_assoc();
+        //  var_dump($sql1);
+        // $b= array_keys($conditions);
+        // var_dump($conditions['username'][0]);
+        // var_dump($b[0]);
+        
+        if(!empty($row['username'])){
+             exit('<div class="alert alert-danger alert-dismissible fade show text-center">
+                    <button class="close" data-dismiss="alert" type="button">
+                        <span>&times;</span>
+                    </button>
+                    <strong>Username Already Tooken ???</strong> </div>');
+        }else if(!empty($rows['email'])){
+             exit('<div class="alert alert-danger alert-dismissible fade show text-center">
+                    <button class="close" data-dismiss="alert" type="button">
+                        <span>&times;</span>
+                    </button>
+                    <strong>Email Already Tooken ???</strong> </div>');
+        }else{
+              $this->update($table,$conditions,$id);
+        }
+    } 
+
+    public function forgotUsernameCountsTimesHeCreatespassword($table,$fields=array(),$user_id)
+    {
+        $columns="";
+        $i= 1;
+        foreach ($fields as $key => $value) {
+            # code...
+            $columns .= "{$key} = {$value}";
+            if ($i++ < count($fields)) {
+                # code...
+                 $columns .= ',';
+            }
+        }
+
+         $mysqli= $this->database;
+        $sql="UPDATE $table SET {$columns} WHERE user_id='$user_id'";
+        $query= $mysqli->query($sql);
+    }
+
+    public function checkPassword($password)
+    {
+        $mysqli= $this->database;
+        $query= $mysqli->query("SELECT password FROM users WHERE password= '$password' ");
+        $count=$query->num_rows;
+        if ($count > 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
             
     public function countUSERS()
     {

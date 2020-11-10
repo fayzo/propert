@@ -1,3 +1,4 @@
+<?php include "header_if_login.php"?>
 <?php include "header.php"?>
     
 <!-- <body> -->
@@ -18,9 +19,11 @@
              </div>
              <div class="col-sm-6">
                  <ol class="breadcrumb float-sm-right">
-                     <li class="breadcrumb-item"><a href="<?php echo HOME ;?>">Home</a></li>
-                     <li class="breadcrumb-item active"><a href="<?php echo PROFILE; ?>">User profile </a></li>
-                 </ol>
+                     <li class="breadcrumb-item"><a href="<?php echo HOME; ?>">Home</a></li>
+                    <?php if(isset($_SESSION['key']) != 'buyer') { ?> 
+                     <li class="breadcrumb-item active"><a href="<?php echo BASE_URL.$user['username'] ;?>">User profile </a></li>
+                     <?php } ?>
+                </ol>
              </div>
          </div>
      </section>

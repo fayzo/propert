@@ -12,11 +12,11 @@
                     <div class="col-lg-3">
                         <div class="footer-logo">
                             <div class="logo">
-                                <a href="<?php echo BASE_URL;?>index.html"> 
+                                <a href="<?php (isset($_SESSION['key'])? HOME:F_INDEX ); ?>"> 
                                     <img src="<?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" alt="">
                                 </a>
                             </div>
-                            <p>Subscribe our newsletter gor get notification about new updates.</p>
+                            <p>Subscribe our newsletter to get notification about new updates.</p>
                             <form action="#" id="newslatter_form" method ="post" class="newslatter-form">
                                 <div id="responseNewslatter"></div>
                                 <input type="text" name="newslatter_email_client" id="newslatter_email_client" placeholder="Enter your email...">
@@ -28,27 +28,28 @@
                         <div class="footer-widget">
                             <h4>Property City</h4>
                             <ul>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kacyiru</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kimihurura</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kagugu</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kabunga</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a  href="javascript:void(0)" >Kacyiru</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a  href="javascript:void(0)" >Kimihurura</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a  href="javascript:void(0)" >Kagugu</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a  href="javascript:void(0)" >Kibagabaga</a></li>
                             </ul>
                             <ul>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Gisozi</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Nyarutarama</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kimironko</a></li>
-                                <li><i class="fa fa-caret-right"></i> <a href="#">Kicukiro</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="javascript:void(0)" >Gisozi</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="javascript:void(0)" >Nyarutarama</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="javascript:void(0)" >Kimironko</a></li>
+                                <li><i class="fa fa-caret-right"></i> <a href="javascript:void(0)" >Kicukiro</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="footer-widget">
+                        <div class="footer-widget" >
+                        <!-- style="float:left; margin-right:70px;" -->
                             <h4>Social</h4>
                             <ul class="social">
-                                <li><i class="ti-facebook"></i> <a href="<?php echo $businessDetails['facebook_business']; ?>">Facebook</a></li>
-                                <li><i class="ti-instagram"></i> <a href="<?php echo $businessDetails['instagram_business']; ?>">Instagram</a></li>
-                                <li><i class="ti-twitter-alt"></i> <a href="<?php echo $businessDetails['twitter_business']; ?>">Twitter</a></li>
-                                <li><i class="ti-google"></i> <a href="<?php echo $businessDetails['google_plus_business']; ?>">Google+</a></li>
+                                <li><i class="ti-facebook"></i> <a href="<?php echo FACEBOOK.$businessDetails['facebook_business']; ?>">Facebook</a></li>
+                                <li><i class="ti-instagram"></i> <a href="<?php echo INSTAGRAM.$businessDetails['instagram_business']; ?>">Instagram</a></li>
+                                <li><i class="ti-twitter-alt"></i> <a href="<?php echo TWITTER.$businessDetails['twitter_business']; ?>">Twitter</a></li>
+                                <li><i class="ti-google"></i> <a href="<?php echo GOOGLE_PLUS.$businessDetails['google_plus_business']; ?>">Google+</a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,11 +67,21 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- <div class="col-lg-2">
+                        <div class="footer-widget">
+                            <h4>Link</h4>
+                            <ul class="contact-option">
+                                <li><i class="fa fa-car" aria-hidden="true"></i> Car</li>
+                                <li><i class="fa fa-shopping-basket" aria-hidden="true"></i> Cyamunara</li>
+                                <li><i class="fa fa-cutlery" aria-hidden="true"></i> Foodzana</li>
+                            </ul>
+                        </div>
+                    </div> -->
                 </div>
             </div>
             <div class="copyright-text">
                 <p><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="ti-heart" aria-hidden="true"></i> by <a href="#" >The Real estate Rwanda</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="ti-heart" aria-hidden="true"></i> by <a href="<?php echo (isset($_SESSION['key']))? HOME:F_INDEX; ?>" >The Real estate Rwanda</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></p>
             </div>
         </div>
@@ -94,6 +105,8 @@
     <script src="<?php echo BASE_URL;?>assets/js/main.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/house_delete.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/home_scroll.js"></script>
+    <script src="<?php echo BASE_URL;?>assets/js/login_please.js"></script>
+    <script src="<?php echo BASE_URL;?>assets/js/settings.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/jquery.ui.totop.js"></script>
     <!-- Starting the plugin -->
     <script type="text/javascript">

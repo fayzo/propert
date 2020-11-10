@@ -25,6 +25,7 @@ if(isset($_POST['key'])){
     
         $datetime= date('Y-m-d H-i-s'); // last_login 
         $date_registry= date('Y-m-d'); // date_registry 
+        $register_as =  $users->test_input($_POST['register_as']);
         $firstname =  $users->test_input($_POST['firstname']);
         $lastname = $users->test_input($_POST['lastname']);
         $username =  $users->test_input($_POST['username']);
@@ -77,6 +78,7 @@ if(isset($_POST['key'])){
                'firstname' => $firstname, 
                'lastname' => $lastname, 
                'username' => $username, 
+               'register_as' => $register_as, 
                'email' => $email, 
                'password' => $password, 
                'date_registry' => $date_registry, 
@@ -133,6 +135,14 @@ if(isset($_POST['key'])){
 			<div class="sign-up-htm">
                 <div id="response"></div>
                 <div class="row">
+                    <div class="col-md-12 group">
+                    <label for="user" class="label">Who Are you </label>
+                            <select class="form-control select" name="register_as" id="register_as">
+                             <option value="">- Select -</option>
+                             <option value="Buyer">Buyer</option>
+                             <option value="Agent">Agent</option>
+                           </select>
+                    </div>
                     <div class="col-md-6 group">
                         <label for="user" class="label">Firtsname</label>
                         <input type="text" id="firstname" class="form-control input" placeholder="Firtsname" />
@@ -218,6 +228,7 @@ function manage(key) {
 
     
     function signup(key) {
+        var register_as = $("#register_as");
         var firstname = $("#firstname");
         var lastname = $("#lastname");
         // var date = $("#date");
@@ -226,7 +237,7 @@ function manage(key) {
         var password = $("#password");
         var verifypassword = $("#verifypassword");
         //   use 1 or second method to validaton
-        if (isEmpty(firstname) && isEmpty(lastname) && 
+        if (isEmpty(register_as) && isEmpty(firstname) && isEmpty(lastname) && 
          isEmpty(username) && isEmpty(email) && isEmpty(password) && 
          isEmpty(verifypassword)) {
             //    alert("complete register");
@@ -236,6 +247,7 @@ function manage(key) {
                 dataType: "text",
                 data: {
                     key: key,
+                    register_as: register_as.val(),
                     firstname: firstname.val(),
                     lastname: lastname.val(),
                     username: username.val(),
@@ -251,7 +263,7 @@ function manage(key) {
                             location.reload();
                         }, 2000);
                     } else {
-                        isEmptys(firstname) || isEmptys(lastname) || 
+                        isEmptys(register_as) || isEmptys(firstname) || isEmptys(lastname) || 
                         isEmptys(username) || isEmptys(email) || isEmptys(password) ||
                         isEmptys(verifypassword)
                     }

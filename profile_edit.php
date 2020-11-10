@@ -1,3 +1,4 @@
+<?php include "header_if_login.php"?>
 <?php include "header.php"?>
     
 <!-- <body> -->
@@ -18,7 +19,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo HOME; ?>">Home</a></li>
-                <li class="breadcrumb-item active"><a href="<?php echo PROFILE; ?>">Profile</a></li>
+                <li class="breadcrumb-item active"><a href="<?php echo BASE_URL.$user['username'] ;?>">Profile</a></li>
                 <li class="breadcrumb-item active"><a href="<?php echo PROFILE_EDIT; ?>">Profile Edit</a></li>
                 </ol>
             </div>
@@ -58,7 +59,7 @@
                                           src='<?php echo BASE_URL_LINK."image/users_profile_cover/".$user['profile_img'] ;?>'
                                           alt="User profile picture">
                                   <?php  }else{ ?>
-                                    <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User profile picture">
+                                    <img class="rounded-circle"  src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User profile picture">
                                           <!-- src='< ?php echo BASE_URL_LINK.NO_PROFILE_IMAGE_URL ;?>' -->
                                   <?php } ?>
                           </div>

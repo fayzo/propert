@@ -8,7 +8,23 @@ class Notification extends House
     public function getNotificationCount($user_id)
     {
        $mysqli= $this->database;
-       $query="SELECT COUNT(message_id) AS total_agentmessage, (SELECT COUNT(house_id) FROM house WHERE user_id3 = $user_id AND status_house ='0' ) AS total_watchlist_house , (SELECT COUNT(message_id) FROM business_message WHERE status=0 ) AS total_business_msg FROM agent_message WHERE user_id3= $user_id AND status= '0' ";
+       $query="SELECT COUNT(message_id) AS total_agentmessage, (SELECT COUNT(house_id_list) FROM house_watchlist WHERE user_id3_list = $user_id AND status_house ='0' ) AS total_watchlist_house , (SELECT COUNT(message_id) FROM business_message WHERE status=0 ) AS total_business_msg FROM agent_message WHERE user_id3= $user_id AND status= '0' ";
+       $result=$mysqli->query($query);
+       $data=array();
+       while ($row = $result->fetch_assoc()) {
+                $data[]= $row;
+       }
+    //    var_dump($data);
+       foreach ($data as $notifiCount) {
+           # code...
+           return $notifiCount;
+       }
+    }
+
+    public function getTotal_msgCountExit($user_id)
+    {
+       $mysqli= $this->database;
+       $query="SELECT COUNT(message_id) AS total_agentExitmessage, (SELECT COUNT(house_id_list) FROM house_watchlist WHERE user_id3_list = $user_id ) AS total_watchlist_house_Exit FROM agent_message WHERE user_id3= $user_id ";
        $result=$mysqli->query($query);
        $data=array();
        while ($row = $result->fetch_assoc()) {
@@ -36,10 +52,10 @@ class Notification extends House
        $result=$mysqli->query($query);
     }
 
-    public function house_watchlist($user_id)
+    public function house_watchlist($user_id,$house_id)
     {
        $mysqli= $this->database;
-       $query="UPDATE house SET status = '1' WHERE user_id3 = $user_id AND status_house= '0'";
+       $query="UPDATE house_watchlist SET status_house = '1' WHERE user_id3_list_id = $user_id AND status_house= '0' AND house_id_list = $house_id ";
        $result=$mysqli->query($query);
     }
 

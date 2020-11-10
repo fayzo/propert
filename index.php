@@ -1,3 +1,4 @@
+<?php include "Get_usernameProfile.php"?>
 <?php include "header.php"?>
     
 <!-- <body> -->
@@ -20,7 +21,7 @@
                             <span class="input-group-text" id="basic-addon2"><i class="fa fa-home mr-1" aria-hidden="true"></i></span>
                         </div>
                         <select class="form-control" name="type_Property_select" id="type_Property_select">
-                            <option >Property For</option>
+                            <option >-- Select Property --</option>
                             <option value="House_For_sale">House For sale</option>
                             <option value="House_For_rent">House For rent</option>
                             <option value="Land_For_sale">House Land</option>
@@ -108,6 +109,7 @@
                         </div> 
                         <!-- col -->
                         <div class="col-md-12 mb-3">
+                            <?php echo $house->Property_City_search($user_id);?>
                             <?php echo $house->request_property();?>
                         </div> 
                         <!-- col -->
@@ -136,13 +138,13 @@
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="<?php echo BASE_URL; ?>assets/image/img/howit-works/howit-works-1.png" alt="">
-                        <h4>Search & Find Apartment</h4>
+                        <h4>Search & Find House</h4>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-howit-works">
                         <img src="<?php echo BASE_URL; ?>assets/image/img/howit-works/howit-works-2.png" alt="">
-                        <h4>Find Your Room</h4>
+                        <h4>Find Your Property</h4>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -184,7 +186,7 @@
                             <span>Property For You</span>
                             <h2>Properties</h2>
                         </div>
-                        <a href="#" class="top-property-all">View All Property</a>
+                        <a href="<?php echo (isset($_SESSION['key']))? VIEW_ALL_PROPERTY:F_VIEW_ALL_PROPERTY; ?>" class="top-property-all">View All Property</a>
                     </div>
                 </div>
             </div>

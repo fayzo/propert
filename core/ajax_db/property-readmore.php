@@ -1,6 +1,6 @@
 <?php 
 include('../init.php');
-// $users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
+$users->preventUsersAccess($_SERVER['REQUEST_METHOD'],realpath(__FILE__),realpath($_SERVER['SCRIPT_FILENAME']));
 
 
 if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
@@ -15,7 +15,6 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
         // $uprofileId= $home->usersNameId($username);
         // $profileData= $home->userData($uprofileId['user_id']);
         // $user_id= $profileData['user_id'];
-        echo 'bad';
         $businessDetails= $home->businessData('1');
 
     }
@@ -49,7 +48,7 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
                     <div class="card-header">
                         <button class="btn btn-success btn-sm  float-right d-md-block d-lg-none"  onclick="togglePopup ( )">close</button>
                         <div class="header-nav">
-                            <a href="<?php echo BASE_URL;?>index.php"> 
+                            <a href="<?php echo HOME;?>"> 
                                 <img src="<?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" alt="">
                             </a>
                             <ul class="d-none d-lg-inline-block">
@@ -201,7 +200,6 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
                <!-- column-3 -->
                <div class="col-lg-4">
                    <div class="property-contactus">
-                            <h4>Contact Us</h4>
                             <div class="agent-desc">
                             <div class="user-block">
                                 <div class="user-blockImgBorder">
@@ -219,7 +217,7 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
                                 <span class="description">Publish <i class="fa fa-clock-o" style="color: #2cbdb8;margin-right: 4px;" aria-hidden="true"></i>- Sep 17, 2019</span> -->
                             </div>
                                 <div class="agent-title">
-                                    <h5><?php echo $row['authors']; ?></h5>
+                                    <h5><a href="<?php echo BASE_URL.$row['username']; ?>">Contact <?php echo $row['lastname']; ?></a></h5>
                                     <!-- <span>Saler Marketing </span> -->
                                     <span>Agent </span>
                                 </div>
@@ -230,29 +228,29 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
                                     <a href="< ?php echo $businessDetails['instagram_business']; ?>"><i class="fa fa-instagram"></i></a>
                                     <a href="< ?php echo $businessDetails['email_business']; ?>>"><i class="fa fa-envelope"></i></a> -->
                                     <?php  if(!empty($row['facebook'])){ ?>
-                                    <a href="<?php echo $row['facebook']; ?>"><i class="fa fa-facebook"></i></a>
+                                    <a href="<?php echo FACEBOOK.$row['facebook']; ?>"><i class="fa fa-facebook"></i></a>
                                     <?php }else { ?>
-                                        <a href="<?php echo $businessDetails['facebook_business']; ?>"><i class="fa fa-facebook"></i></a>
+                                        <a href="<?php echo FACEBOOK.$businessDetails['facebook_business']; ?>"><i class="fa fa-facebook"></i></a>
                                     <?php } ?>
                                     <?php  if(!empty($row['twitter'])){ ?>
-                                        <a href="<?php echo $row['twitter']; ?>"><i class="fa fa-twitter"></i></a>
+                                        <a href="<?php echo TWITTER.$row['twitter']; ?>"><i class="fa fa-twitter"></i></a>
                                     <?php }else { ?>
-                                        <a href="<?php echo $businessDetails['twitter_business']; ?>"><i class="fa fa-twitter"></i></a>
+                                        <a href="<?php echo TWITTER.$businessDetails['twitter_business']; ?>"><i class="fa fa-twitter"></i></a>
                                     <?php } ?>
                                     <?php  if(!empty($row['google_plus'])){ ?>
-                                        <a href="<?php echo $row['google_plus']; ?>"><i class="fa fa-google-plus"></i></a>
+                                        <a href="<?php echo GOOGLE_PLUS.$row['google_plus']; ?>"><i class="fa fa-google-plus"></i></a>
                                     <?php }else { ?>
-                                        <a href="<?php echo $businessDetails['google_plus_business']; ?>"><i class="fa fa-google-plus"></i></a>
+                                        <a href="<?php echo GOOGLE_PLUS.$businessDetails['google_plus_business']; ?>"><i class="fa fa-google-plus"></i></a>
                                     <?php } ?>
                                     <?php  if(!empty($row['instagram'])){ ?>
-                                        <a href="<?php echo $row['instagram']; ?>"><i class="fa fa-instagram"></i></a>
+                                        <a href="<?php echo INSTAGRAM.$row['instagram']; ?>"><i class="fa fa-instagram"></i></a>
                                     <?php }else { ?>
-                                        <a href="<?php echo $businessDetails['instagram_business']; ?>"><i class="fa fa-instagram"></i></a>
+                                        <a href="<?php echo INSTAGRAM.$businessDetails['instagram_business']; ?>"><i class="fa fa-instagram"></i></a>
                                     <?php } ?>
                                     <?php  if(!empty($row['email'])){ ?>
-                                        <a href="<?php echo $row['email']; ?>"><i class="fa fa-envelope"></i></a>
+                                        <a href="<?php echo MAIL.$row['email']; ?>"><i class="fa fa-envelope"></i></a>
                                     <?php }else { ?>
-                                        <a href="<?php echo $businessDetails['email_business']; ?>>"><i class="fa fa-envelope"></i></a>
+                                        <a href="<?php echo MAIL.$businessDetails['email_business']; ?>>"><i class="fa fa-envelope"></i></a>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -340,6 +338,151 @@ if (isset($_POST['house_id']) && !empty($_POST['house_id'])) {
 
 <?php } 
 
+
+if(isset($_POST['contacts_agent'])){ 
+    
+    # code...
+    $businessDetails= $home->businessData('1');
+    $user_id = $_POST['user_id_agent'];
+
+    $mysqli= $db;
+    $query= $mysqli->query("SELECT * FROM users WHERE user_id = $user_id ");
+    $row = $query->fetch_array();
+    ?>
+
+    <div class="house-popup">
+        
+    <div class="wrap6" id="disabler">
+        <div class="wrap6Pophide" onclick="togglePopup ( )" ></div>
+        <span class="col-sm-12 col-md-3  colose">
+            <button class="close-imagePopup"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </span>
+        <div class="img-popup-wrap" id="popupEnd" style="max-width: 409px;">
+            <div class="img-popup-body" >
+    
+            <div class="card">
+                <div class="card-header">
+                        <button class="btn btn-success btn-sm  float-right d-md-block d-lg-none" onclick="togglePopup( )">close</button>
+                        <div class="property-contactus">
+                            <div class="agent-desc">
+                            <div class="user-block">
+                                <div class="user-blockImgBorder">
+                                    <div class="user-blockImg">
+                                        <?php if (!empty($row['profile_img'])) { ?>
+                                            <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$row['profile_img']; ?>" alt="User Image">
+                                        <?php  }else{ ?>
+                                            <img src="<?php echo BASE_URL_LINK.NO_PROFILE_IMAGE;?>" alt="User Image">
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <!-- <span class="username tooltips">
+                                    <a href="http://localhost:80/Blog_nyarwanda_CMS/fayzo">faysal shema</a>
+                                </span>
+                                <span class="description">Publish <i class="fa fa-clock-o" style="color: #2cbdb8;margin-right: 4px;" aria-hidden="true"></i>- Sep 17, 2019</span> -->
+                            </div>
+                                <div class="agent-title">
+                                    <h5><a href="<?php echo BASE_URL.$row['username']; ?>"> Contact <?php echo $row['lastname']; ?></a></h5>
+                                    <!-- <span>Saler Marketing </span> -->
+                                    <span class="mr-2"> Agent </span>
+                                    <span class="agent-social">
+                                        <!-- <a href="< ?php echo $businessDetails['facebook_business']; ?>"><i class="fa fa-facebook"></i></a>
+                                        <a href="< ?php echo $businessDetails['twitter_business']; ?>"><i class="fa fa-twitter"></i></a>
+                                        <a href="< ?php echo $businessDetails['google_plus_business']; ?>"><i class="fa fa-google-plus"></i></a>
+                                        <a href="< ?php echo $businessDetails['instagram_business']; ?>"><i class="fa fa-instagram"></i></a>
+                                        <a href="< ?php echo $businessDetails['email_business']; ?>>"><i class="fa fa-envelope"></i></a> -->
+                                        <?php  if(!empty($row['facebook'])){ ?>
+                                        <a href="<?php echo $row['facebook']; ?>"><i class="fa fa-facebook"></i></a>
+                                        <?php }else { ?>
+                                            <a href="<?php echo $businessDetails['facebook_business']; ?>"><i class="fa fa-facebook"></i></a>
+                                        <?php } ?>
+                                        <?php  if(!empty($row['twitter'])){ ?>
+                                            <a href="<?php echo $row['twitter']; ?>"><i class="fa fa-twitter"></i></a>
+                                        <?php }else { ?>
+                                            <a href="<?php echo $businessDetails['twitter_business']; ?>"><i class="fa fa-twitter"></i></a>
+                                        <?php } ?>
+                                        <?php  if(!empty($row['google_plus'])){ ?>
+                                            <a href="<?php echo $row['google_plus']; ?>"><i class="fa fa-google-plus"></i></a>
+                                        <?php }else { ?>
+                                            <a href="<?php echo $businessDetails['google_plus_business']; ?>"><i class="fa fa-google-plus"></i></a>
+                                        <?php } ?>
+                                        <?php  if(!empty($row['instagram'])){ ?>
+                                            <a href="<?php echo $row['instagram']; ?>"><i class="fa fa-instagram"></i></a>
+                                        <?php }else { ?>
+                                            <a href="<?php echo $businessDetails['instagram_business']; ?>"><i class="fa fa-instagram"></i></a>
+                                        <?php } ?>
+                                        <?php  if(!empty($row['email'])){ ?>
+                                            <a href="<?php echo $row['email']; ?>"><i class="fa fa-envelope"></i></a>
+                                        <?php }else { ?>
+                                            <a href="<?php echo $businessDetails['email_business']; ?>>"><i class="fa fa-envelope"></i></a>
+                                        <?php } ?>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <form action="#" method="post" id="form_agentMessage" class="agent-contact-form">
+                <div class="card-body">
+                    <div id="responses"></div> 
+                    <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+                    <input type="hidden" name="house_id" value="0">
+                            <div class="form-row">
+                                <div class="col-12">
+                                <label for="lastname">Name :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="name_clientToAgent" id="name_clientToAgent"
+                                        aria-describedby="helpId" placeholder="name">
+                                        <span id="response"></span>
+                                </div>
+                                </div>
+                                <div class="col-12">
+                                <label for="specialize">email :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-envelope"></i>
+                                        </span>
+                                    </div> 
+                                    <input type="email" class="form-control" name="email_clientToAgent" id="email_clientToAgent"
+                                        aria-describedby="helpId" placeholder="@email">
+                                        <span id="response"></span>
+                                </div>
+                                </div>
+                                <div class="col-12">
+                                <label for="specialize">Telephone :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-phone"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="phone_clientToAgent" id="phone_clientToAgent" 
+                                        aria-describedby="helpId" placeholder="Telephone">
+                                        <span id="response"></span>
+                                </div>
+                                </div>
+                            </div>
+                               
+                            <textarea class="form-control mt-2" id="message_clientToAgent"  name="message_clientToAgent"  placeholder="Messages"></textarea>
+                                <div id="responseAgentMessage"></div>
+                        </div>  <!-- card-body -->
+                        <div class="card-footer">
+                            <button id="submit_clientToAgent"  class="btn btn-block btn-primary m-2"  type="button" >Send Message</button>
+                        </div>
+                         <!-- card-footer -->
+                        </form>
+                      </div>
+                           <!-- card -->
+    
+            </div><!-- img-popup-body -->
+            </div><!-- tweet-show-popup-box -->
+        </div> <!-- Wrp4 -->
+    </div> <!-- apply-popup" -->
+    
+    <?php } 
+
 if (isset($_POST['name_clientToAgent']) && !empty($_POST['name_clientToAgent'])) {
     $user_id= $_POST['user_id'];
     $house_id= $_POST['house_id'];
@@ -357,7 +500,7 @@ if (isset($_POST['name_clientToAgent']) && !empty($_POST['name_clientToAgent']))
 	'phone_client'=> $phone, 
 	'message_client'=> $message, 
     'user_id3'=> $user_id,
-    'house_id'=> $house_id,
+    'house_id_msg'=> $house_id,
     'datetime'=> $datetime 
         ));
 } 

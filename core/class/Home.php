@@ -1,5 +1,7 @@
 <?php 
-
+ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])){
+    header('Location: ../../404.html');
+}
 class Home extends Users {
 
      public function usersNameId($username)
@@ -23,7 +25,7 @@ class Home extends Users {
     {
 
         $insertValuesSQL ="";
-        $targetDir = $_SERVER['DOCUMENT_ROOT'].'/twitter_ex/uploads/house/';
+        $targetDir = DOCUMENT_ROOT.'/uploads/house/';
         $allowTypes = array('jpg','png','jpeg','mp4','mp3', 'gif', 'bmp' , 'pdf' , 'doc' , 'ppt','docx', 'xlsx','xls','zip');
         
         foreach($file['name'] as $key => $value){

@@ -36,15 +36,15 @@
                                     <p><span style="font-weight:bold;">Phone : </span>
                                     <span id="phone_clientReqView"></span> </p>
                                     <hr>
-                                    <p><span style="font-weight:bold;">Request TYPE : </span>
-                                    <span id="request_type_clientReqView"></span> </p>
+                                    <p><span style="font-weight:bold;">Request : </span>
+                                    <span id="request_type_clientReqView"></span> | <span id="Equipment_clientReqView"></span></p>
                                     <hr>
-                                    <p><span style="font-weight:bold;">Property Type : </span>
+                                    <p><span style="font-weight:bold;">Property : </span>
                                     <span id="property_clientReqView"></span> </p>
                                     <hr>
-                                    <p><span style="font-weight:bold;">Equipment :</span>
+                                    <!-- <p><span style="font-weight:bold;">Equipment :</span>
                                     <span id="Equipment_clientReqView"></span> </p>
-                                    <hr>
+                                    <hr> -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <p><span style="font-weight:bold;">Bedroom : </span>

@@ -14,7 +14,7 @@ $(document).ready(function () {
                 showpopupdelete: house_id,
             }, success: function (response) {
                 $(".popupTweet").html(response);
-                $(".close-retweet-popup,.cancel-it").click(function () {
+                $(".close-imagePopup,.cancel-it").click(function () {
                     $(".house-popup").hide();
                 });
                 $(".delete-it-house").click(function () {
