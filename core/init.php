@@ -23,18 +23,18 @@ define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/twitter_ex');
 // UPLOAD PHOTO
 
 // THIS IS HOUSE LINK
-define('F_INDEX', BASE_URL.'fayzo.index');
-define('F_PROPERTY_REQUEST', BASE_URL.'fayzo.property_request');
-define('F_VIEW_ALL_PROPERTY', BASE_URL.'fayzo.view_all_property');
+define('F_INDEX', BASE_URL.'property.home');
+define('F_PROPERTY_REQUEST', BASE_URL.'property.property_request');
+define('F_VIEW_ALL_PROPERTY', BASE_URL.'property.view_all_property');
 
 // THIS IS HOUSE LINK
-define('SETTING', BASE_URL.'settings.php');
-define('PROFILE', BASE_URL.'profile.php');
-define('PROFILE_EDIT', BASE_URL.'profile_edit.php');
-define('VIEW_MESSAGE', BASE_URL.'message.php');
-define('WATCH_LIST', BASE_URL.'watchlist.php');
-define('PROPERTY_REQUEST', BASE_URL.'property_request.php');
-define('VIEW_ALL_PROPERTY', BASE_URL.'view_all_property.php');
+// define('PROFILE', BASE_URL.'profile');
+define('SETTING', BASE_URL.'settings');
+define('PROFILE_EDIT', BASE_URL.'profile_edit');
+define('VIEW_MESSAGE', BASE_URL.'message');
+define('WATCH_LIST', BASE_URL.'watchlist');
+define('PROPERTY_REQUEST', BASE_URL.'property_request');
+define('VIEW_ALL_PROPERTY', BASE_URL.'view_all_property');
 // END HOUSE LINK
 
 // TWITTER SOCIAL MEDIA 

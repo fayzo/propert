@@ -22,7 +22,7 @@ class Users extends Db{
     public function preventUsersAccess($request,$currentfile,$currently)
     {
        if ($request == 'GET' && $currentfile == $currently) {
-            header('Location: '.INDEX.'');
+            header('Location: '.F_INDEX.'');
         }
     }
     

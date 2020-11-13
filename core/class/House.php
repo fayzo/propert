@@ -891,7 +891,6 @@ class House extends Home {
             } 
     }
 
-
     public function commentsToAgent($house_id)
     {
         $mysqli= $this->database;

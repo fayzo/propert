@@ -125,7 +125,7 @@ class Profile_house_agent extends House {
                             <div class="text-danger price-change" style="text-decoration: line-through;">
                             <?php echo number_format($house['price_discount']); ?> Frw </div><?php } ?>
                         </span>
-                        <?php if(isset($_SESSION['key']) && $_SESSION['key']!= $user_id){ ;?>
+                        <?php if(isset($_SESSION['key'])){ if($_SESSION['key']!= $user_id){ ;?>
                         <div class="text-muted clear-right" style="padding-bottom: 10px;">
                                 <form method="post" id="form-housecartitem<?php echo $house['code']; ?>add" class="float-right">
                                     <div style="display:inline-flex;" >
@@ -147,7 +147,7 @@ class Profile_house_agent extends House {
                                         <button type="button"  onclick="xxda_prof_house_agent_delete('remove','<?php echo 'form-housecartitem'.$house['code'].'remove'; ?>','<?php echo $house['code']; ?>');"  class="btn btn-outline-danger btn-sm " ><img src="<?php echo BASE_URL_LINK ;?>image/img/icon-delete.png" alt="Remove Item" /> Remove</button> 
                                 </form>
                         </div>
-                        <?php } ;?>
+                        <?php } } ;?>
 
                 </div>
             <div> Publish <?php echo $this->timeAgo($house['created_on3']); ?></div>

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>iragiro House</title>
     <!-- favicon must be with index website to compress it is /favicon.io/favicon.cc-->
 	<!-- <link rel="icon"  type="image/png" href="< ?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" size"32x32" > -->
-
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
      <!-- Google Font -->
      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 

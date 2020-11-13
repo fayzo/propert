@@ -30,12 +30,12 @@ if (isset($_GET['username']) == true && empty($_GET['username']) == false) {
     }
 }else{
 
-     if (isset($_SERVER['REQUEST_URI']) == '/twitter_ex/fayzo.index' ||
-         isset($_SERVER['REQUEST_URI']) == '/twitter_ex/fayzo.view_all_property' ||
-         isset($_SERVER['REQUEST_URI']) == '/twitter_ex/fayzo.property_request'
+     if (isset($_SERVER['REQUEST_URI']) == '/twitter_ex/property.index' ||
+         isset($_SERVER['REQUEST_URI']) == '/twitter_ex/property.view_all_property' ||
+         isset($_SERVER['REQUEST_URI']) == '/twitter_ex/property.property_request'
     ){
         # code...
-        $username= $users->test_input('fayzo');
+        $username= $users->test_input('property');
         $uprofileId= $home->usersNameId($username);
         $profileData= $home->userData($uprofileId['user_id']);
 
