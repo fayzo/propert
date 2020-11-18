@@ -50,6 +50,7 @@ define('MAIL', 'https://www.mail.com/');
 define( 'NO_PROFILE_IMAGE', 'image/users_profile_cover/empty-profile.png');
 define( 'NO_PROFILE_IMAGE_URL', 'assets/image/user_default_image/defaultprofileimage.png');
 define( 'NO_COVER_IMAGE_URL', 'assets/image/user_default_image/defaultCoverImage.png');
+define( 'COVER_IMAGE_URL', 'assets/image/img/vision-city-rwanda.jpg');
 
 
 

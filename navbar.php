@@ -147,7 +147,7 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- User image -->
-                                            <li class="user-header" style="background: url('http://localhost:80/Blog_nyarwanda_CMS/assets/image/users_profile_cover/702caus.jpg') center center;background-size: cover; overflow: hidden; width: 100%;">
+                                            <li class="user-header" style="background: url('<?php echo BASE_URL_LINK.COVER_IMAGE_URL;?>') center center;background-size: cover; overflow: hidden; width: 100%;">
                                                 <?php if (!empty($user['profile_img'])) { ?>
                                                     <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$user['profile_img'] ;?>" alt="" class="rounded-circle" alt="User Image" >
                                                 <?php  }else{ ?>

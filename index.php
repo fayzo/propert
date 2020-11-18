@@ -10,6 +10,7 @@
     
     <!-- Form for search House -->
     <div class="container">
+    <!-- < ?php phpinfo(INFO_VARIABLES); ?> -->
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" name="form" id="form" class="filter-form" >
             <div class="form-row bg-getcell">
                 <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id ;?>">
