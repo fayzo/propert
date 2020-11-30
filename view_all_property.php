@@ -111,7 +111,7 @@
                         <div class="col-md-12 mb-3">
                             <?php echo $house->Property_City_search($user_id);?>
                             <?php echo $house->request_property();?>
-                            <?php echo $watch_list->agent_profile_viewProfile();?>
+                            <!-- < ?php echo $watch_list->agent_profile_viewProfile();?> -->
                         </div> 
                         <!-- col -->
                     </div> 
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            <?php echo $house->agent_profile_home(); ?>
+            <?php echo $house->agent_profile_home($user_id); ?>
         </div>
 
 </section>

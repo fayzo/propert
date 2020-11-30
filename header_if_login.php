@@ -9,7 +9,6 @@ if ($users->loggedin() == false) {
     $businessDetails= $home->businessData('1');
     $notific= $notification->getNotificationCount($user_id);
     $Exit_msg= $notification->getTotal_msgCountExit($user_id);
-
 }
 
 echo $house->housecart_item(); 

@@ -102,6 +102,10 @@ if(isset($_POST['key'])){
     <title>Document</title>
     <link href="<?php echo BASE_URL;?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo BASE_URL;?>assets/css/login.css" rel="stylesheet">
+	<link href="<?php echo BASE_URL;?>assets/css/imagePopup.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo BASE_URL;?>assets/plugin/fontawesome-free/css/all.min.css" rel="stylesheet" >
+    <link href="<?php echo BASE_URL;?>assets/css/font-awesome.min.css" type="text/css" rel="stylesheet" >
+
 </head>
 <body>
 
@@ -259,9 +263,32 @@ function manage(key) {
                     $("#response").html(response);
                     console.log(response);
                     if (response.indexOf('SUCCESS') >= 0) {
-                        setInterval(() => {
-                            location.reload();
-                        }, 2000);
+                        setTimeout(function () {
+                            if (register_as.val() == 'Agent') {
+
+                                $.ajax({
+                                    url: '../core/ajax_db/mtn_payment.php',
+                                    method: 'POST',
+                                    dataType: 'text',
+                                    data: {
+                                        register_as: 'register_as',
+                                        register: register_as.val(),
+                                        name: lastname.val(),
+                                    }, success: function (response) {
+                                        // location.reload();
+                                        $(".popupTweet").html(response).fadeIn();
+                                        $(".close-imagePopup").click(function () {
+                                            $(".house-popup").hide();
+                                        });
+                                        console.log(response);
+                                    }
+                                });
+
+                            } else {
+                                        window.location = 'login.php';
+                                        // console.log(user_id.val()+register.val());
+                                    }
+                            }, 4000);
                     } else {
                         isEmptys(register_as) || isEmptys(firstname) || isEmptys(lastname) || 
                         isEmptys(username) || isEmptys(email) || isEmptys(password) ||
@@ -301,7 +328,28 @@ function manage(key) {
             document.getElementById("myBtn").click();
         }
     });
+    function togglePopup ( ) {
+    // let disabler = document.getElementById('disabler');
+    // disabler.style.display = disabler.style.display ? '' : 'none';
 
+    // let popup = document.getElementById('popupEnd');
+    // popup.style.display = popup.style.display ? '' : 'none';
+
+    var disabler = document.getElementById('disabler');
+        if (disabler.style.display) {
+        disabler.style.display = '';
+        } else {
+        disabler.style.display = 'none';
+        }
+
+    var popup = document.getElementById('popupEnd');
+        if (popup.style.display) {
+        popup.style.display = '';
+        } else {
+        popup.style.display = 'none';
+        }
+}
 </script>
+<div class="popupTweet"></div>
 </body>
 </html>

@@ -43,7 +43,7 @@
                       <!-- <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p> -->
                       <ul class="ml-4 mb-0 fa-ul text-muted">
                         <li class="small"><span class="fa-li"><i class="fa fa-lg fa-building"></i></span> Address: <?php echo $profileData['location']; ?></li>
-                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-phone"></i></span> Phone : <?php echo $profileData['telephone']; ?></li>
+                        <li class="small"><span class="fa-li"><i class="fa fa-lg fa-phone"></i></span> Phone : (+250) <br><?php echo substr($profileData['telephone'],1); ?></li>
                       </ul>
                     </div>
                     <div class="col-5 text-center single-agent-profile">
@@ -55,9 +55,9 @@
                               <?php } ?>
                             <!-- <img src="< ?php echo BASE_URL;?>assets/image/img/agent/agent-1.jpg" alt="" class="img-circle img-fluid"> -->
                             <div class="hover-social">
-                                <a href="<?php echo TWITTER.$profileData['twitter']; ?>" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="<?php echo FACEBOOK.$profileData['facebook']; ?>" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="<?php echo INSTAGRAM.$profileData['instagram']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+                                <a target="_blank" href="<?php echo TWITTER.$profileData['twitter']; ?>" class="twitter"><i class="fa fa-twitter"></i></a>
+                                <a target="_blank" href="<?php echo FACEBOOK.$profileData['facebook']; ?>" class="instagram"><i class="fa fa-instagram"></i></a>
+                                <a target="_blank" href="<?php echo INSTAGRAM.$profileData['instagram']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
                             </div>
                         </div>
                     </div>

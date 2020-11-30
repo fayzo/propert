@@ -8,6 +8,11 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
+     <!-- /.loader pagination posted -->
+     <div class="text-center">
+        <div id="loader" style="display: none;"></div>
+        <!-- <img id="loader" src="< ?php echo BASE_URL_LINK."image/users_profile_cover/"?>loading.svg" style="display: none;"/>  -->
+    </div>
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
     <div class="canvas-open">
@@ -34,7 +39,7 @@
                     <i class="icon_phone"></i>
                     <div class="info-text">
                         <span>Phone:</span>
-                        <p>(+250) <?php echo $businessDetails['phone_business']; ?></p>
+                        <p>(+250) <?php echo substr($businessDetails['phone_business'],1); ?></p>
                     </div>
                 </li>
                 <li>
@@ -55,14 +60,16 @@
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
-
+    
+    <!-- Header Section Begin -->
+    <header class="header-section">
         <div class="nav-logo">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
                             <div class="logo">
                                 <a href="<?php echo (isset($_SESSION['key']))? HOME:F_INDEX; ?>"> 
-                                  <img src="<?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" alt="">
+                                  <img src="<?php echo BASE_URL;?>assets/image/img/partner/irangiro_House.png" alt="">
                                 </a>
                             </div>
                     </div>
@@ -73,7 +80,7 @@
                                     <i class="icon_phone"></i>
                                     <div class="info-text">
                                         <span>Phone:</span>
-                                        <p>(+250) <?php echo $businessDetails['phone_business']; ?></p>
+                                        <p>(+250) <?php echo substr($businessDetails['phone_business'],1); ?></p>
                                     </div>
                                 </li>
                                 <li>
@@ -132,7 +139,7 @@
 
                             <div class="nav-float-right">
                                 
-                                <a style="color:white;border: none;" href="#" class="btn btn-sm btn-outline-primary"  id="contacts_us" data-contacts="contacts_us" ><i class="fas fa-edit"></i> Request Property</a>
+                                <a style="color:white;border: none;" href="#" class="btn btn-sm btn-outline-primary"  id="contacts_us" data-contacts="contacts_us" data-user='<?php echo $user_id ;?>' ><i class="fas fa-edit"></i> Request Property</a>
                                 <!-- <a style="color:white;border: none;" href="#" class="btn btn-sm btn-outline-primary" id="property_request_clients" data-house="admin" >Request Property</a> -->
                                 <a style="color:white;border: none;" href="#" class="btn btn-sm btn-outline-primary" id="add_house" data-house="<?php echo $user_id; ?>" ><i class="fas fa-edit"></i> Post Property</a>
                                 <?php if (isset($_SESSION['key'])) { ?>

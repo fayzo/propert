@@ -37,7 +37,7 @@
 
                         <!-- col -->
                         <div class="col-md-12 mb-3">
-                            <?php echo $watch_list->agent_profile_viewProfile();?>
+                            <?php echo $watch_list->agent_profile_viewProfile($user_id);?>
                         </div> 
                         <!-- col -->
                     </div> 

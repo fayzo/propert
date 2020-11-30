@@ -99,6 +99,7 @@ $(document).ready(function () {
 
         e.stopPropagation();
         var contacts_us = $(this).data('contacts');
+        var user_id = $(this).data('user');
 
         $.ajax({
             url: 'core/ajax_db/contact.php',
@@ -106,6 +107,7 @@ $(document).ready(function () {
             dataType: 'text',
             data: {
                 contacts_us: contacts_us,
+                user_id: user_id,
             }, success: function (response) {
                 $(".popupTweet").html(response);
                 $(".close-imagePopup").click(function () {
@@ -164,7 +166,8 @@ $(document).ready(function () {
         var form_id = $('#form-house');
         // event.preventDefault();
         e.stopPropagation();
-        // var title = $('#title');
+        var user_id = $('#user_id_');
+        var register = $('#register_');
         var authors = $('#authors');
         var additioninformation = $('#addition-information');
         var photo = $('#photo');
@@ -246,8 +249,34 @@ $(document).ready(function () {
                             $("#responseSubmithouse").fadeOut();
                         }, 2000);
                         setInterval(function () {
-                            location.reload();
-                        }, 2400);
+
+                            if (user_id.val() == 4 || register.val() == 'Buyer') {
+
+                                $.ajax({
+                                    url: 'core/ajax_db/mtn_payment.php',
+                                    method: 'POST',
+                                    dataType: 'text',
+                                    data: {
+                                        user_id: user_id.val(),
+                                        name: authors.val(),
+                                        phone:phone.val(),
+                                        register: register.val(),
+                                    }, success: function (response) {
+                                        // location.reload();
+                                        $(".popupTweet").html(response).fadeIn();
+                                        $(".close-imagePopup").click(function () {
+                                            $(".house-popup").hide();
+                                        });
+                                        console.log(response);
+                                    }
+                                });
+                        
+                            } else {
+                                        // location.reload();
+                                        console.log(user_id.val()+register.val());
+                                    }
+
+                        }, 3000);
                     }, error: function (response) {
                         $("#responseSubmithouse").html(response).fadeIn();
                         setInterval(function () {
@@ -262,6 +291,8 @@ $(document).ready(function () {
 
     $(document).on('click', '#submit_form_hide_bedbath', function (e) {
         var form_id = $('#form-house');
+        var user_id = $('#user_id_');
+        var register = $('#register_');
         // event.preventDefault();
         e.stopPropagation();
         // var title = $('#title');
@@ -341,8 +372,31 @@ $(document).ready(function () {
                             $("#responseSubmithouse").fadeOut();
                         }, 2000);
                         setInterval(function () {
-                            location.reload();
-                        }, 2400);
+                            if (user_id.val() == 4 || register.val() == 'Buyer') {
+
+                                $.ajax({
+                                    url: 'core/ajax_db/mtn_payment.php',
+                                    method: 'POST',
+                                    dataType: 'text',
+                                    data: {
+                                        user_id: user_id.val(),
+                                        name: authors.val(),
+                                        phone:phone.val(),
+                                        register: register.val(),
+                                    }, success: function (response) {
+                                        // location.reload();
+                                        $(".popupTweet").html(response).fadeIn();
+                                        $(".close-imagePopup").click(function () {
+                                            $(".house-popup").hide();
+                                        });
+                                        console.log(response);
+                                    }
+                                });
+
+                            } else {
+                                        location.reload();
+                                    }
+                        }, 3000);
                     }, error: function (response) {
                         $("#responseSubmithouse").html(response).fadeIn();
                         setInterval(function () {
@@ -354,6 +408,7 @@ $(document).ready(function () {
             }
         }
     });
+
 
     $(document).on('click', '#submit_clientToAgent', function (e) {
         e.preventDefault();
@@ -376,6 +431,7 @@ $(document).ready(function () {
                             $("#responseAgentMessage").fadeOut();
                         }, 2500);
                         setInterval(function () {
+                            window.location.reload();
                             // location.reload();
                         }, 2800);
                     }, error: function (response) {
@@ -408,6 +464,7 @@ $(document).ready(function () {
                             $("#responseNewslatter").fadeOut();
                         }, 3500);
                         setInterval(function () {
+                            // window.location.reload();
                             // location.reload();
                         }, 3800);
                     }, error: function (response) {
@@ -442,7 +499,12 @@ $(document).ready(function () {
     });
 });
 
+// $(document).on('click', '#submit_clientToAgent', function (e) {
+//     e.preventDefault();
 function client_business(key) {
+    // var form_id = $('#form-house-request-client');
+    var user_id = $('#user_id_');
+    var register = $('#register_');
     var name_client_ = $("#name_client_");
     var email_client_ = $("#email_client_");
     var Request_Type_client_ = $("#Request_Type_client_");
@@ -457,7 +519,6 @@ function client_business(key) {
     var messages_client_ = $("#messages_client_");
     //   use 1 or second method to validaton
     if (isEmpty(name_client_) && isEmpty(email_client_) && isEmpty(Request_Type_client_) && isEmpty(property_type_client_) &&
-        isEmpty(equipment_client_) && isEmpty(Minimum_bedrooms_client_) && isEmpty(Minimum_bedrooms_client_) && isEmpty(Minimum_bathrooms_client_) &&
         isEmpty(location) && isEmpty(phone_client_) && isEmpty(currency) && isEmpty(price) &&  isEmpty(messages_client_)
     ) {
         //    alert("complete register");
@@ -485,9 +546,35 @@ function client_business(key) {
                 console.log(response);
                 if (response.indexOf('SUCCESS') >= 0) {
                     setInterval(() => {
-                        // window.location = '../index.php';
+                        // window.location.reload();
+                        // window.location.href=window.location.href;
                         // location.reload();
-                    }, 1500);
+                            if (user_id.val() == 4 || register.val() == 'Buyer') {
+
+                                $.ajax({
+                                    url: 'core/ajax_db/mtn_payment.php',
+                                    method: 'POST',
+                                    dataType: 'text',
+                                    data: {
+                                        user_id: user_id.val(),
+                                        name: name_client_.val(),
+                                        phone: phone_client_.val(),
+                                        register: register.val(),
+                                    }, success: function (response) {
+                                        // location.reload();
+                                        $(".popupTweet").html(response).fadeIn();
+                                        $(".close-imagePopup").click(function () {
+                                            $(".house-popup").hide();
+                                        });
+                                        console.log(response);
+                                    }
+                                });
+
+                            } else {
+                                        location.reload();
+                                    }
+                    }, 4000);
+                clearTimeout();
                 }else {
                    isEmptys(name_client_) || isEmptys(email_client_) 
                 }
@@ -495,6 +582,7 @@ function client_business(key) {
         });
     }
 }
+
 
 function contact_business(key) {
     var name_client_ = $("#name_client_0");
@@ -521,7 +609,7 @@ function contact_business(key) {
                 console.log(response);
                 if (response.indexOf('SUCCESS') >= 0) {
                     setInterval(() => {
-                        // window.location = '../index.php';
+                        window.location.reload();
                         // location.reload();
                     }, 1500);
                 }else {
@@ -616,3 +704,23 @@ function isEmptys(caller) {
     }
     return true;
 }
+ // var params = '?user_id='+user_id.val()+'&name='+name_client_.val()+
+                        // '&phone='+ phone_client_.val()+'&register='+register.val();
+                        // var url = 'core/ajax_db/mtn_payment.php' +params;
+                        // var url = 'core/ajax_db/mtn_payment.php';
+                        // var server = window.location.hostname;
+                        // var pathname = window.location.pathname;
+
+                        // var form = $(
+                        // '<form action ="'+url+'" method="post">'+
+                        // '<input type="hidden" name="user_id" value="'+user_id.val()+'">' +
+                        // '<input type="hidden" name="name" value="'+name_client_.val()+'">' +
+                        // '<input type="hidden" name="phone" value="'+phone_client_.val()+'">' +
+                        // '<input type="hidden" name="register" value="'+register.val()+'">' +
+                        // '</form>');
+                        
+                        // $('body').append(form);
+                        // console.log(window.location.pathname+window.location.search);
+                        // console.log(pathname+url);
+                        // console.log(form);
+                        // form.submit();

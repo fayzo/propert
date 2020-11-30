@@ -11,7 +11,7 @@ function closeNav() {
 }
 
 function getPropertyTypeHide(selectObject) {
-  if(selectObject.value == "commerce_For_rent" || selectObject.value == "House_Land"){
+  if(selectObject.value == "commerce_For_rent" || selectObject.value == "Land_For_sale"){
     $('#EquipmentHide').hide();
     $('#bedroomsHide').hide();
     $('#bathroomsHide').hide();

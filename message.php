@@ -40,7 +40,7 @@
                             </div>
                             <ul class="nav nav-pills">
                                     <li class="nav-item"><a class="nav-link  active" href="#Sale"
-                                        data-toggle="tab"><i class="fa fa-envelope-o"></i> Message</a> </li>
+                                        data-toggle="tab"><i class="fa fa-envelope-o"></i> Inbox Message</a> </li>
                             </ul>
                              <!-- /.card-tools -->
                         </div>

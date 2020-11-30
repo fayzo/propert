@@ -13,7 +13,7 @@
                         <div class="footer-logo">
                             <div class="logo">
                                 <a href="<?php (isset($_SESSION['key'])? HOME:F_INDEX ); ?>"> 
-                                    <img src="<?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" alt="">
+                                    <img src="<?php echo BASE_URL;?>assets/image/img/partner/irangiro_House.png" alt="">
                                 </a>
                             </div>
                             <p>Subscribe our newsletter to get notification about new updates.</p>
@@ -49,7 +49,6 @@
                                 <li><i class="ti-facebook"></i> <a href="<?php echo FACEBOOK.$businessDetails['facebook_business']; ?>">Facebook</a></li>
                                 <li><i class="ti-instagram"></i> <a href="<?php echo INSTAGRAM.$businessDetails['instagram_business']; ?>">Instagram</a></li>
                                 <li><i class="ti-twitter-alt"></i> <a href="<?php echo TWITTER.$businessDetails['twitter_business']; ?>">Twitter</a></li>
-                                <li><i class="ti-google"></i> <a href="<?php echo GOOGLE_PLUS.$businessDetails['google_plus_business']; ?>">Google+</a></li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +57,7 @@
                             <h4>Contact Us</h4>
                             <ul class="contact-option">
                                 <li><i class="fa fa-map-marker"></i>  <?php echo $businessDetails['address_business']; ?>, RW</li>
-                                <li><i class="fa fa-phone"></i> (+250) <?php echo $businessDetails['phone_business']; ?></li>
+                                <li><i class="fa fa-phone"></i> (+250) <?php echo substr($businessDetails['phone_business'],1); ?></li>
                                 <li><i class="fa fa-envelope"></i> <?php echo $businessDetails['email_business']; ?></li>
                                 <!-- <a href = "mailto:abc@example.com?subject = Feedback&body = Message">
                                 Send Feedback

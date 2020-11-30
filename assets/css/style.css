@@ -67,6 +67,19 @@ ul, ol {
 	animation: loader 0.8s linear infinite;
 	-webkit-animation: loader 0.8s linear infinite;
 }
+#loader {
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -13px;
+	margin-left: -13px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+	z-index: 999999;
+}
 @keyframes loader {
 	0% {
 		-webkit-transform: rotate(0deg);
@@ -738,7 +751,7 @@ ul, ol {
 	min-width: 100%;
 	min-height: 100%;
 	width: 40%;
-	height: 187px;
+	height: 200px;
 }
 .property-list .single-property-item .property-text .s-text {
 	font-size: 10px;
@@ -887,6 +900,10 @@ ul, ol {
 	color: #ffffff;
 	margin-bottom: 0;
 	margin-top: 5px;
+}
+
+.agent-section .owl-carousel .owl-nav.disabled {
+    display: inline-block;
 }
 /*--------------------------
   Property Details Section
@@ -1209,7 +1226,7 @@ ul, ol {
 		margin-right: 20px;
 	}
 	.top-properties-carousel .single-top-properties .stp-text {
-		padding-left: 0;
+		padding-left: 0 !important;
 	}
 	.top-properties-carousel .single-top-properties .stp-text .room-features li {
 		margin-right: 50px;
@@ -1470,7 +1487,7 @@ ul, ol {
 		padding-top: 30px;
 	}
 	.top-properties-carousel .single-top-properties .stp-text {
-		padding-left: 0;
+		padding-left: 0 !important;
 		padding-top: 30px;
 	}
 	.pd-details-text .pd-details-tab .tab-content .property-more-table table tbody tr td.p-value {
@@ -1499,7 +1516,7 @@ ul, ol {
 		height: 185px;
 	}
 	.property-list .single-property-item .property-pic .propertyPicture {
-		height: 170px;
+		height: 180px;
 	}
 }
 /* Wide Mobile: 480px */
@@ -1564,7 +1581,7 @@ ul, ol {
 		text-align: center;
 	}
 	.agent-carousel.owl-carousel .owl-nav button[type=button], .top-properties-carousel.owl-carousel .owl-nav button[type=button] {
-		position: relative;
+		position: relative !important;
 		-webkit-transform: translateY(0);
 		-ms-transform: translateY(0);
 		transform: translateY(0);
@@ -1616,7 +1633,7 @@ ul, ol {
 		background: #2c2c2c;
 	}
 	.top-properties-carousel .single-top-properties .stp-text .room-features li {
-		margin-right: 16px;
+		margin-right: 16px !important;
 		margin-bottom: 10px;
 	}
 	.single-property-item .property-text .room-features li {

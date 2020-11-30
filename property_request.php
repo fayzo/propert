@@ -36,7 +36,7 @@
                 <!-- col -->
                <!-- col -->
                <div class="col-md-3 mb-3">
-                    <?php echo $house->agent_profile_viewProfile();?>
+                    <?php echo $house->agent_profile_viewProfile($user_id);?>
                 </div> 
                 <!-- col -->
             </div>
@@ -47,5 +47,5 @@
     </section>
     <!-- Property Section End -->
 
-    
+<?php include "admin_message.php"?>
 <?php include "footer.php"?>

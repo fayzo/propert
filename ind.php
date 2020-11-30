@@ -11,9 +11,9 @@
    $matches = 'house_for_sale';
    $matchess = 'house_for_sale';
    $findme   = 'vale';
-   $pos = strpos($mystring, $findme);
-   $sub = substr($mystring,-4);
-   $sub =(substr($mystring,-4) == 'sale')? 'sale' : 'rent';
+   echo $pos = strpos($mystring, $findme);
+   echo $sub = substr($mystring,1)."reba aha";
+   echo $sub =(substr($mystring,-4) == 'sale')? 'sale' : 'rent';
 // Provides: Hll Wrld f PHP
 // $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
 $vowels = "o";

@@ -7,7 +7,7 @@
     <!-- favicon must be with index website to compress it is /favicon.io/favicon.cc-->
 	<!-- <link rel="icon"  type="image/png" href="< ?php echo BASE_URL;?>assets/image/img/partner/partner-4.png" size"32x32" > -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png"> -->
      <!-- Google Font -->
      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
@@ -91,6 +91,7 @@
 
     //Get cell list
     function showResult3_search(){
+        $('#loader').show();
         var pages = 1;
         var user_id = document.getElementById('user_id').value;
         var province = document.getElementById('provincecode').value;
@@ -106,8 +107,14 @@
 		{//Call a function when the sector changes.
 		// document.getElementById("codecell").innerHTML=http.responseText;
 		// if(document.getElementById('codecell').value!=="No Cell Available")
-		document.getElementById("house_hidden").innerHTML=http.responseText;
-		document.form.name.disabled=false;
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house_hidden');
+                pagination.innerHTML = http.responseText;
+		        document.form.name.disabled=false;
 		
 		}		
 	}
@@ -115,6 +122,7 @@
     // THIS IS FOR PAGINATION PAGES
 
     function houseCategoriesHomeSearch(categories,province,district,sector,pages,user_id) {
+        $('#loader').show();
         var params = '&pages=' + pages +'&categories='+categories+'&province='+province+'&district='+district+'&sector_list='+sector+'&user_id='+user_id;
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/getcell.php',true);
@@ -123,12 +131,13 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
@@ -136,6 +145,7 @@
     // THIS IS FOR CATEGORIES PROPERTY SEARCH SECTOR
 	
     function houseCategories_SeachSector(categories,province,district,sector,user_id,pages) {
+        $('#loader').show();
         var params = '&pages=' + pages +'&categories='+categories+'&province='+province+'&district='+district+'&sector_list='+sector+'&user_id='+user_id;
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/getcell.php',true);
@@ -144,13 +154,13 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        //  console.log(xhr.responseText);
-                        break;
-                }
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
@@ -159,17 +169,26 @@
     // THIS IS FOR FOOTER SEARCH SECTOR HOUSE
 
     function houseCategoriesFooter_SeachSector(categories,province,district,sector,pages,user_id){
+        $('#loader').show();
         var params = '&pages='+pages+'&categories='+categories+'&province='+province+'&district='+district+'&sector='+sector+'&user_id='+user_id;
 		http=new XMLHttpRequest();
 		http.open("POST","core/ajax_db/getcell.php",true);
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 		http.send(params);
-		http.onreadystatechange = function() 
-		{//Call a function when the sector changes.
+		http.onreadystatechange = function() {
+            //Call a function when the sector changes.
 		// document.getElementById("codecell").innerHTML=http.responseText;
 		// if(document.getElementById('codecell').value!=="No Cell Available")
-		document.getElementById("house_hidden").innerHTML=http.responseText;
-		document.form.name.disabled=false;
+        // $('html,body').animate({scrollTop:0},0);
+        // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house_hidden');
+                pagination.innerHTML = http.responseText;
+		        // document.form.name.disabled=false;
 		
 		}		
 	}
@@ -197,18 +216,23 @@
 	}
 	
     function houseCategories(categories,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/houseView_FecthPaginat.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                 // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:0},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
+
             }
         };
           xhr.addEventListener('progress',function(e){
@@ -228,91 +252,115 @@
 	
 	
     function houseCategoriesHome(categories,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/propertyView_FecthPaginat.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:0},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
+              
             }
         };
     }
   
     function houseWatch_ListCategories(categories,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/watch_list_Fecth.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
 
     function property_requestCategories(categories,id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/property_request_Fecth.php?pages=' + id + '&categories=' + categories, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('request-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('request-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
 
     function house_agentCategories(categories,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/house_agent_Fecth.php?pages=' + id + '&categories=' + categories + '&user_id=' + user_id, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (categories) {
-                    case categories:
-                         var pagination = document.getElementById('house-hide');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+             
+                // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
   
     function houseRange(range,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'core/ajax_db/house_add.php?pages=' + id + '&price_range=' + range + '&user_id=' + user_id, true);
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                switch (range) {
-                    case range:
-                         var pagination = document.getElementById('property-list');
-                         pagination.innerHTML = xhr.responseText;
-                        break;
-                }
+                 // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('property-list');
+                pagination.innerHTML = xhr.responseText;
+
             }
         };
     }
 	
     function houseRangeLayout(range,id,user_id) {
+        $('#loader').show();
         var xhr = new XMLHttpRequest();
         var params ='&pages=' + id + '&price_range=' + range + '&user_id=' + user_id;
 		xhr.open("POST","core/ajax_db/propertyView_range.php",true);
@@ -321,8 +369,15 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
 
-                        var pagination = document.getElementById('house-hide');
-                        pagination.innerHTML = xhr.responseText;
+                  // $('html,body').animate({scrollTop:0},0);
+                // $('html,body').animate({scrollTop:0},'slow');
+                setTimeout(() => {
+                    $('#loader').fadeOut();
+                }, 1000);
+                // $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:100},'slow');
+                var pagination = document.getElementById('house-hide');
+                pagination.innerHTML = xhr.responseText;
             }
         };
     }
