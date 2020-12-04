@@ -11,7 +11,7 @@ include('class/Profile_house_agent.php');
 include('class/Property_request.php');
 
 // define('BASE_URL','https://iragiro.com/');
-define('BASE_URL','http://localhost/twitter_ex/');
+define('BASE_URL','http://localhost/irangiro_house/');
 define('HOME', BASE_URL.'index.php');
 define('BASE_URL_LINK', BASE_URL.'assets/');
 define('LOGIN', BASE_URL.'includes/login.php');
@@ -19,7 +19,7 @@ define('LOGOUT', BASE_URL.'includes/logout.php');
 define('ADMIN', BASE_URL.'admin.php');
 
 // UPLOAD PHOTO
-define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/twitter_ex');
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/irangiro_house');
 // UPLOAD PHOTO
 // (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')? 'https' : 'http';
 // echo  $_SERVER['SERVER_NAME'];
