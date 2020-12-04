@@ -3,9 +3,9 @@
 class DB{
     
     private $dbHost     = "localhost";
-    private $dbUsername = "root";
-    private $dbPassword = "";
-    private $dbName     = "upand_running";
+    private $dbUsername = "irageeyt_root";
+    private $dbPassword = "shemafa1@";
+    private $dbName     = "irageeyt_test";
     private $dbPort     = "3308";
     
     public function __construct(){

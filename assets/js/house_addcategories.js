@@ -464,7 +464,7 @@ $(document).ready(function () {
                             $("#responseNewslatter").fadeOut();
                         }, 3500);
                         setInterval(function () {
-                            // window.location.reload();
+                            window.location.reload();
                             // location.reload();
                         }, 3800);
                     }, error: function (response) {

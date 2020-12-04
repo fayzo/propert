@@ -1,12 +1,19 @@
 RewriteEngine On
 # Handle Authorization Header
 #RewriteBase /
+
 #RewriteCond %{HTTPS} !=on
-#RewriteCond %{HTTP_HOST} ^iragiro\.com$ [OR]
+# RewriteCond %{HTTP_HOST} ^iragiro\.com$ [OR]
+# RewriteCond %{HTTP_HOST} ^irangiro\.com$ [OR]
+# RewriteCond %{HTTP_HOST} ^iragiro\.rw$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.iragiro\.rw$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.irangiro\.com$ [OR]
 #RewriteCond %{HTTP_HOST} ^www\.iragiro\.com$
 #RewriteRule .* https://iragiro.com%{REQUEST_URI} [R=301,L]
 
 #RewriteCond %{HTTPS} =on
+# RewriteCond %{HTTP_HOST} ^www\.iragiro\.rw$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.irangiro\.com$ [OR]
 #RewriteCond %{HTTP_HOST} ^www\.iragiro\.com$
 #RewriteRule .* https://iragiro.com%{REQUEST_URI} [R=301,L]
 

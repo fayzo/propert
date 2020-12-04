@@ -70,6 +70,7 @@ if(isset($_POST['key'])){
                        </button>
                        <strong>Password Must eqaul to verification</strong> </div>');
        }else {
+        require '../signup_for_thank.php';
    
          $users->alreadyUseEmail('users',array(
               'username' => $username, 

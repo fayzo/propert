@@ -10,7 +10,7 @@ include('class/Watchlist.php');
 include('class/Profile_house_agent.php');
 include('class/Property_request.php');
 
-
+// define('BASE_URL','https://iragiro.com/');
 define('BASE_URL','http://localhost/twitter_ex/');
 define('HOME', BASE_URL.'index.php');
 define('BASE_URL_LINK', BASE_URL.'assets/');
