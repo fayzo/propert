@@ -7,7 +7,7 @@ $(document).ready(function () {
             // $('#loader').show();
 
             $.ajax({
-                url: 'core/ajax_db/fetchPost.php',
+                url: 'core/ajax_db/fetchPost',
                 method: 'POST',
                 dataType: 'text',
                 data: {

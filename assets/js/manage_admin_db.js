@@ -1,7 +1,7 @@
 
      function viewORedits(rowID, type) {
             $.ajax({
-                url: 'core/ajax_db/manage_admin_db.php',
+                url: 'core/ajax_db/manage_admin_db',
                 method: 'POST',
                 dataType: 'json',
                 data: {
@@ -73,7 +73,7 @@
             var notes = $("#notes_admin");
 
         $.ajax({
-            url: 'core/ajax_db/manage_admin_db.php',
+            url: 'core/ajax_db/manage_admin_db',
             method: "POST",
             dataType: "text",
             data: {
@@ -110,7 +110,7 @@
         function deleteRow(rowID,key) {
             if (confirm('Are you sure?')) {
                 $.ajax({
-                    url: 'core/ajax_db/manage_admin_db.php',
+                    url: 'core/ajax_db/manage_admin_db',
                     method: 'POST',
                     dataType: 'text',
                     data: {
@@ -127,7 +127,7 @@
 
                         }
                         // setInterval(() => {
-                        //     // window.location = '../index.php';
+                        //     // window.location = '../index';
                         //     location.reload();
                         // }, 2500);
                     }
@@ -139,7 +139,7 @@
         function approved(rowID,approval) {
             if (confirm('Are you sure??')) {
                 $.ajax({
-                    url: 'core/ajax_db/manage_admin_db.php',
+                    url: 'core/ajax_db/manage_admin_db',
                     method: 'POST',
                     dataType: 'text',
                     data: {
@@ -149,7 +149,7 @@
                         $("#approval"+rowID).html(approval);
                         alert(response);
                         // setInterval(() => {
-                        //     // window.location = '../index.php';
+                        //     // window.location = '../index';
                         //     location.reload();
                         // }, 2500);
                     }
@@ -160,7 +160,7 @@
         function approvedHouses(rowID,approval) {
             if (confirm('Are you sure??')) {
                 $.ajax({
-                    url: 'core/ajax_db/manage_admin_db.php',
+                    url: 'core/ajax_db/manage_admin_db',
                     method: 'POST',
                     dataType: 'text',
                     data: {
@@ -171,7 +171,7 @@
                         $("#approvalHouse"+rowID).html(approval);
                         alert(response);
                         // setInterval(() => {
-                        //     // window.location = '../index.php';
+                        //     // window.location = '../index';
                         //     location.reload();
                         // }, 2500);
                     }
@@ -184,7 +184,7 @@
             var t = $(this).attr("id");
             console.log(t);
             $.ajax({
-                url: 'core/ajax_db/manage_admin_db.php',
+                url: 'core/ajax_db/manage_admin_db',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -204,7 +204,7 @@
                     $("#editContent_admin").fadeOut();
                     $("#closeBtn").fadeIn();
                     $("#button_admin").fadeOut();
-                    console.log(response);
+                    // console.log(response);
                     console.log(userPictureURL);
                 }
             });
@@ -216,7 +216,7 @@
         
      function business_msg(rowID, type) {
         $.ajax({
-            url: 'core/ajax_db/manage_admin_db.php',
+            url: 'core/ajax_db/manage_admin_db',
             method: 'POST',
             dataType: 'json',
             data: {
@@ -259,7 +259,7 @@
     function deleteRowHouse(rowID,type) {
         if (confirm('Are you sure?')) {
             $.ajax({
-                url: 'core/ajax_db/manage_admin_db.php',
+                url: 'core/ajax_db/manage_admin_db',
                 method: 'POST',
                 dataType: 'text',
                 data: {
@@ -288,7 +288,7 @@
 
     function viewOReditHouses(rowID,type) {
             $.ajax({
-                url: 'core/ajax_db/house_delete.php',
+                url: 'core/ajax_db/house_delete',
                 method: 'POST',
                 dataType: 'text',
                 data: {

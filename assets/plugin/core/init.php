@@ -12,11 +12,11 @@ include('class/Property_request.php');
 
 // define('BASE_URL','https://iragiro.com/');
 define('BASE_URL','http://localhost/irangiro_house/');
-define('HOME', BASE_URL.'index.php');
+define('HOME', BASE_URL);
 define('BASE_URL_LINK', BASE_URL.'assets/');
-define('LOGIN', BASE_URL.'includes/login.php');
-define('LOGOUT', BASE_URL.'includes/logout.php');
-define('ADMIN', BASE_URL.'admin.php');
+define('LOGIN', BASE_URL.'includes/login');
+define('LOGOUT', BASE_URL.'includes/logout');
+define('ADMIN', BASE_URL.'admin');
 
 // UPLOAD PHOTO
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/irangiro_house');

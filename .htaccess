@@ -20,9 +20,10 @@ RewriteEngine On
 # Redirect Trailing Slashes If Not A Folder...
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !\.php$
 RewriteCond %{REQUEST_FILENAME}\.php -f
 
-RewriteRule ^(.*)$ $1.php [NC,L]
+RewriteRule ^(.*)$ $1.php [NC,L,QSA]
 RewriteRule ^([0-9a-zA-Z_-]+).(home)/?$ index.php?username=$1 [NC,L,QSA]
 RewriteRule ^([0-9a-zA-Z_-]+)/?$ profile.php?username=$1 [NC,L,QSA]
 RewriteRule ^([0-9a-zA-Z_-]+).(view_all_property|property_request)/?$ $2.php?username=$1 [NC,L,QSA]

@@ -60,7 +60,7 @@ function completeUpload(success, fileName) {
         $('#imagePreview_').attr("src", fileName);
         $('#fileInput_').attr("value", fileName);
         setInterval(() => {
-            // window.location = '../index.php';
+            // window.location = '../index';
             location.reload();
         }, 1500);
         console.log(success);
@@ -83,7 +83,7 @@ function careers(key) {
     var facebook = $("#facebook");
     var instagram = $("#instagram");
         $.ajax({
-            url: 'core/ajax_db/profileEditFectchimage.php',
+            url: 'core/ajax_db/profileEditFectchimage',
             method: "POST",
             dataType: "text",
             data: {
@@ -98,7 +98,7 @@ function careers(key) {
                 instagram : instagram.val(),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.indexOf('SUCCESS') >= 0) {
                     // setInterval(function() {
                     //     location.reload();
@@ -118,7 +118,7 @@ function aboutMe(key) {
     var notes = $('#notes');
 
         $.ajax({
-            url: 'core/ajax_db/profileEditFectchimage.php',
+            url: 'core/ajax_db/profileEditFectchimage',
             method: "POST",
             dataType: "text",
             data: {
@@ -129,7 +129,7 @@ function aboutMe(key) {
                 notes: notes.val(),
             },
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.indexOf('SUCCESS') >= 0) {
                     // setInterval(function() {
                     //     location.reload();
@@ -156,7 +156,7 @@ function aboutMe(key) {
         var address = $("#map_businesss");
 
             $.ajax({
-                url: 'core/ajax_db/profileEditFectchimage.php',
+                url: 'core/ajax_db/profileEditFectchimage',
                 method: "POST",
                 dataType: "text",
                 data: {
@@ -172,7 +172,7 @@ function aboutMe(key) {
                     address : address.val(),
                 },
                 success: function (response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.indexOf('SUCCESS') >= 0) {
                         // setInterval(function() {
                         //     location.reload();

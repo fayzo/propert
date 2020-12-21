@@ -144,7 +144,7 @@
                                 <a style="color:white;border: none;" href="#" class="btn btn-sm btn-outline-primary" id="add_house" data-house="<?php echo $user_id; ?>" ><i class="fas fa-edit"></i> Post Property</a>
                                 <?php if (isset($_SESSION['key'])) { ?>
                                     <div class="dropdown user user-menu show">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
                                              <?php if (!empty($user['profile_img'])) { ?>
                                                 <img src="<?php echo BASE_URL_LINK."image/users_profile_cover/".$user['profile_img'] ;?>" alt="" class="user-image rounded-circle" alt="User Image" >
                                             <?php  }else{ ?>

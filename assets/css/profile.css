@@ -97,3 +97,9 @@
     content: " ";
     display: table;
 }
+
+.nav-float-right > .dropdown > .dropdown-menu {
+    position: absolute !;
+    right: 0;
+    left: auto;
+}
