@@ -19,7 +19,7 @@ define('LOGOUT', BASE_URL.'includes/logout');
 define('ADMIN', BASE_URL.'admin');
 
 // UPLOAD PHOTO
-define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/irangiro_house');
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 // UPLOAD PHOTO
 // (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')? 'https' : 'http';
 // echo  $_SERVER['SERVER_NAME'];
@@ -37,7 +37,7 @@ define('VIEW_MESSAGE', BASE_URL.'message');
 define('WATCH_LIST', BASE_URL.'watchlist');
 define('PROPERTY_REQUEST', BASE_URL.'property_request');
 define('VIEW_ALL_PROPERTY', BASE_URL.'view_all_property');
-define('SETTING', BASE_URL.'settings.php');
+define('SETTING', BASE_URL.'settings');
 // END HOUSE LINK
 
 // TWITTER SOCIAL MEDIA 

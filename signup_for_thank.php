@@ -6,6 +6,19 @@ $mail->isSMTP();        // Set mailer to use SMTP IF UR USING IN LOCOHOST TURN I
 // $mail->SMTPDebug = 3;                               // Enable verbose debug output
 // $mail->Debugoutput = 'html';
 // $mail->Host = 'smtp.gmail.com;smtp2.example.com';  // Specify main and backup SMTP servers
+// $mail->SMTPOptions = array(
+//     'ssl' => array(
+//     'verify_peer' => false,
+//     'verify_peer_name' => false,
+//     'allow_self_signed' => true
+//     )
+//     );
+// $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+// $mail->SMTPAuth = true;                               // Enable SMTP authentication
+// $mail->Username = 'irangiroltd@gmail.com';                 // SMTP username
+// $mail->Password = $mail->passme();                          // SMTP password
+// $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+// $mail->Port = 587;                                    // TCP port to connect to
 $mail->SMTPOptions = array(
     'ssl' => array(
     'verify_peer' => false,
@@ -13,16 +26,16 @@ $mail->SMTPOptions = array(
     'allow_self_signed' => true
     )
     );
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->Host = 'iragiro.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'irangiroltd@gmail.com';                 // SMTP username
-$mail->Password = $mail->passme();                          // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
+$mail->Username = 'house@iragiro.com';                 // SMTP username
+$mail->Password = 'rwanda1234@';                         // SMTP password
+$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                                    // TCP port to connect to
 
-$mail->setFrom('irangiroltd@gmail.com', 'Irangiro property');
-$mail->addAddress('shemafaysal@gmail.com');     // Add a recipient
-// $mail->addAddress('ellen@example.com');               // Name is optional
+$mail->setFrom('house@iragiro.com', 'Irangiro property');
+$mail->addAddress('irangiroltd@gmail.com');     // Add a recipient
+$mail->addAddress($email);               // Name is optional
 $mail->addReplyTo('irangiroltd@gmail.com');
 // $mail->addCC('cc@example.com');
 // $mail->addBCC('bcc@example.com');
