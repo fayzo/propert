@@ -1641,7 +1641,7 @@ class House extends Home {
                     <li><i class="fa fa-caret-right"></i> <a href="javascript:void(0)" onclick="houseCategoriesFooter_SeachSector('House_For_sale',1,103,10304,1,< ?php echo $user_id; ?>)" >Kicukiro
                     <span class="badge badge-primary">< ?php echo $this->housecountProperty_City_search(1,103,10304);?></span></a></li>
                 </ul>    -->
-                <ul style="list-style-type: none;width: 50%;"> 
+                <ul style="list-style-type: none;width: 50%;float:left;"> 
                 <!-- <ul style="list-style-type: none;float: left;width: 50%;">  -->
     <?php
 
@@ -1669,7 +1669,7 @@ class House extends Home {
         $x++;
 
     }
-        echo $Districts0.'</ul><ul style="list-style-type: none;float: right">'.$Districts01 ;
+        echo $Districts0.'</ul><ul style="list-style-type: none;">'.$Districts01 ;
       ?>
                     </ul>
                     <ul style="list-style-type: none;float: left;width: 50%;">

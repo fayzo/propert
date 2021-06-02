@@ -19,7 +19,10 @@ define('LOGOUT', BASE_URL.'includes/logout');
 define('ADMIN', BASE_URL.'admin');
 
 // UPLOAD PHOTO
-define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+// define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); 
+// this is for server cpanel
+
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT'].'/irangiro_house');
 // UPLOAD PHOTO
 // (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off')? 'https' : 'http';
 // echo  $_SERVER['SERVER_NAME'];

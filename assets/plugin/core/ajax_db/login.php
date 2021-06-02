@@ -52,7 +52,7 @@ if ($_POST['key'] == 'signup') {
                        <span>&times;</span>
                    </button>
                    <strong>Email invalid format</strong> </div>');
-   }else if (strlen($username) > 10) {
+   }else if (strlen($username) > 20) {
         exit('<div class="alert alert-danger alert-dismissible fade show text-center">
                    <button class="close" data-dismiss="alert" type="button">
                        <span>&times;</span>

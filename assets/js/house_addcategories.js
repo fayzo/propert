@@ -17,6 +17,7 @@
         return form_data;
     };
     })(jQuery);
+    
 $(document).ready(function () {
 
     $(document).on('click', '#add_house', function (e) {
